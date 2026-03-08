@@ -1,0 +1,115 @@
+<!--pages/orders/orders.wxml - 我的订单-->
+<view class="page-orders">
+
+  <!-- 顶部标签切换 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === item.key ? 'active' : ''}}" 
+          wx:for="{{tabs}}" wx:key="key" 
+          bindtap="switchTab" data-tab="{{item.key}}">
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-card" wx:for="{{orders}}" wx:key="orderId">
+      <!-- 订单头部 -->
+      <view class="order-header">
+        <view class="order-type-wrap">
+          <text class="order-type-icon" wx:if="{{item.type === 'machinery'}}">🚜</text>
+          <text class="order-type-icon" wx:if="{{item.type === 'jobs'}}">💼</text>
+          <text class="order-type-icon" wx:if="{{item.type === 'picking'}}">🍎</text>
+          <text class="order-type-label" wx:if="{{item.type === 'machinery'}}">农机租用</text>
+          <text class="order-type-label" wx:if="{{item.type === 'jobs'}}">务工申请</text>
+          <text class="order-type-label" wx:if="{{item.type === 'picking'}}">采摘预订</text>
+        </view>
+        <text class="order-status {{statusColorMap[item.status]}}">{{statusMap[item.status]}}</text>
+      </view>
+
+      <!-- 订单内容 -->
+      <view class="order-body" bindtap="goToDetail" data-order="{{item}}">
+        <text class="order-title">{{item.itemName}}</text>
+        
+        <!-- 农机订单详情 -->
+        <view wx:if="{{item.type === 'machinery'}}" class="order-info">
+          <view class="order-info-row">
+            <text class="info-label">开始日期：</text>
+            <text class="info-value">{{item.startDate}}</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">租用天数：</text>
+            <text class="info-value">{{item.duration}}天</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">预计费用：</text>
+            <text class="info-value price-text">¥{{item.totalCost}}</text>
+          </view>
+        </view>
+
+        <!-- 务工订单详情 -->
+        <view wx:if="{{item.type === 'jobs'}}" class="order-info">
+          <view class="order-info-row">
+            <text class="info-label">工作地点：</text>
+            <text class="info-value">{{item.location}}</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">薪资待遇：</text>
+            <text class="info-value price-text">{{item.salary}}</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">工作时长：</text>
+            <text class="info-value">{{item.jobDuration}}</text>
+          </view>
+        </view>
+
+        <!-- 采摘订单详情 -->
+        <view wx:if="{{item.type === 'picking'}}" class="order-info">
+          <view class="order-info-row">
+            <text class="info-label">到访日期：</text>
+            <text class="info-value">{{item.visitDate}}</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">预订人数：</text>
+            <text class="info-value">{{item.peopleCount}}人</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">预计费用：</text>
+            <text class="info-value price-text">¥{{item.totalCost}}</text>
+          </view>
+        </view>
+
+        <view class="order-meta">
+          <text class="order-id">订单号：{{item.orderId}}</text>
+          <text class="order-time">{{item.createTime}}</text>
+        </view>
+      </view>
+
+      <!-- 订单操作 -->
+      <view class="order-footer">
+        <view class="order-contact" bindtap="callPhone" data-phone="{{item.contactPhone}}">
+          <text>📞 联系对方</text>
+        </view>
+        <view class="order-actions">
+          <view class="action-btn action-cancel" 
+                wx:if="{{item.status === 'pending' || item.status === 'confirmed'}}" 
+                catchtap="onCancelOrder" data-id="{{item.orderId}}">
+            取消订单
+          </view>
+          <view class="action-btn action-complete" 
+                wx:if="{{item.status === 'confirmed'}}" 
+                catchtap="onCompleteOrder" data-id="{{item.orderId}}">
+            确认完成
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{orders.length === 0}}">
+    <text class="empty-icon-text">📋</text>
+    <text class="empty-text">暂无订单</text>
+    <text class="empty-hint">去预约农机、申请务工或预订采摘吧</text>
+  </view>
+
+</view>

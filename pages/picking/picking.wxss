@@ -1,0 +1,344 @@
+/* pages/picking/picking.wxss */
+
+.page-picking {
+  padding-bottom: 140rpx;
+}
+
+/* 悬浮发布按钮 */
+.fab-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: calc(120rpx + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  background: #4CAF50;
+  color: #fff;
+  padding: 20rpx 32rpx;
+  border-radius: 48rpx;
+  box-shadow: 0 8rpx 24rpx rgba(76, 175, 80, 0.4);
+  z-index: 99;
+  transition: transform 0.2s;
+}
+
+.fab-blue {
+  background: #2196F3;
+  box-shadow: 0 8rpx 24rpx rgba(33, 150, 243, 0.4);
+}
+
+.fab-btn:active {
+  transform: scale(0.92);
+}
+
+.fab-icon {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-right: 8rpx;
+}
+
+.fab-text {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #42A5F5 0%, #2196F3 50%, #0D47A1 100%);
+  padding: 50rpx 30rpx 70rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12rpx;
+}
+
+.page-header-desc {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* 介绍区域 */
+.intro-section {
+  background: #fff;
+  margin: -30rpx 24rpx 24rpx;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+
+.intro-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.intro-desc {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 24rpx;
+  line-height: 1.8;
+  white-space: normal;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 16rpx 0;
+}
+
+.feature-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.feature-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.feature-desc {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  white-space: normal;
+  line-height: 1.6;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  padding: 20rpx 24rpx;
+  gap: 16rpx;
+}
+
+/* 通用段落 */
+.section {
+  padding: 40rpx 24rpx;
+}
+
+.section-gray {
+  background: #f5f5f5;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.filter-item {
+  flex: 1;
+  height: 68rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #666;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.filter-item.active {
+  background: #E3F2FD;
+  color: #2196F3;
+}
+
+.arrow {
+  margin-left: 8rpx;
+  font-size: 20rpx;
+}
+
+.reset-text {
+  color: #F44336;
+}
+
+/* 采摘点列表 */
+.spot-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.spot-card {
+  margin-bottom: 24rpx;
+}
+
+.card-image-wrap {
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 320rpx;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.season-badge {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+}
+
+.spot-name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #1976D2;
+  display: block;
+  margin-bottom: 8rpx;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.spot-meta {
+  margin-top: 12rpx;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+
+/* 按钮组 */
+.btn-group {
+  display: flex;
+  gap: 12rpx;
+}
+
+.btn-mini {
+  padding: 8rpx 24rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.btn-outline-mini {
+  border: 1rpx solid #1976D2;
+  color: #1976D2;
+  background: transparent;
+}
+
+.btn-info-mini {
+  background: #2196F3;
+  color: #fff;
+}
+
+/* 预订步骤 */
+.booking-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.booking-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.step-num {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+.step-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: block;
+  text-align: center;
+  white-space: normal;
+}
+
+.step-desc {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+/* 小贴士 */
+.tips-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16rpx;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease;
+}
+
+.tip-item:active {
+  transform: translateX(8rpx);
+}
+
+.tip-icon {
+  font-size: 44rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.tip-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tip-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1976D2;
+  margin-bottom: 6rpx;
+  display: block;
+}
+
+.tip-desc {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  white-space: normal;
+  line-height: 1.6;
+}

@@ -1,0 +1,148 @@
+<!--pages/partnership/partnership.wxml - 合作推广-->
+<view class="page-partnership">
+
+  <!-- 头部 -->
+  <view class="page-header">
+    <text class="page-header-title">🤝 合作与推广</text>
+    <text class="page-header-desc">携手共建美好乡村，共创农业未来</text>
+  </view>
+
+  <!-- 政府与乡贤合作 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">政府与乡贤合作</text>
+      <text class="section-subtitle">权威背书，信誉保障</text>
+    </view>
+
+    <view class="coop-cards">
+      <view class="coop-card">
+        <text class="coop-icon">🏛️</text>
+        <text class="coop-title">政府合作</text>
+        <text class="coop-desc">与各地方政府建立深度合作关系，获得政策支持和资源保障。</text>
+        <view class="coop-list">
+          <text class="coop-item">✅ 政策法规指导与支持</text>
+          <text class="coop-item">✅ 农业补贴政策对接</text>
+          <text class="coop-item">✅ 基础设施建设协助</text>
+          <text class="coop-item">✅ 品牌宣传与推广支持</text>
+        </view>
+      </view>
+
+      <view class="coop-card">
+        <text class="coop-icon">👔</text>
+        <text class="coop-title">乡贤推荐</text>
+        <text class="coop-desc">邀请当地德高望重的乡贤作为平台推荐人，增强农户信任度。</text>
+        <view class="coop-list">
+          <text class="coop-item">✅ 提升平台信誉度</text>
+          <text class="coop-item">✅ 扩大服务覆盖范围</text>
+          <text class="coop-item">✅ 文化传承与保护</text>
+          <text class="coop-item">✅ 社会责任担当</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 合作案例 -->
+  <view class="section section-gray">
+    <view class="section-header">
+      <text class="section-title">合作案例</text>
+      <text class="section-subtitle">成功合作，共创双赢</text>
+    </view>
+
+    <view class="case-cards">
+      <view class="case-card" wx:for="{{cases}}" wx:key="city">
+        <view class="case-avatar-wrap">
+          <text class="case-avatar-text">{{item.city[0]}}</text>
+        </view>
+        <text class="case-city">{{item.city}}</text>
+        <text class="case-type">{{item.type}}</text>
+        <text class="case-desc">{{item.desc}}</text>
+        <text class="badge {{item.badgeClass}}">{{item.badge}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 为什么选择我们 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">为什么选择合作</text>
+      <text class="section-subtitle">面向广大果园主、私人种植户发出合作邀请</text>
+    </view>
+
+    <view class="advantage-list">
+      <view class="advantage-item">
+        <text class="advantage-icon">👥</text>
+        <view class="advantage-content">
+          <text class="advantage-title">扩大客源</text>
+          <text class="advantage-desc">通过平台宣传推广，吸引更多城市游客和采摘爱好者</text>
+        </view>
+      </view>
+      <view class="advantage-item">
+        <text class="advantage-icon">📈</text>
+        <view class="advantage-content">
+          <text class="advantage-title">增加收入</text>
+          <text class="advantage-desc">多元化收入来源，农机租赁、务工服务、采摘旅游全覆盖</text>
+        </view>
+      </view>
+      <view class="advantage-item">
+        <text class="advantage-icon">📱</text>
+        <view class="advantage-content">
+          <text class="advantage-title">数字化管理</text>
+          <text class="advantage-desc">专业的数字化管理系统，提升运营效率和服务质量</text>
+        </view>
+      </view>
+      <view class="advantage-item">
+        <text class="advantage-icon">🛡️</text>
+        <view class="advantage-content">
+          <text class="advantage-title">品牌保障</text>
+          <text class="advantage-desc">统一品牌形象，专业培训支持，全程服务保障</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 合作申请表单 -->
+  <view class="section section-gray">
+    <view class="section-header">
+      <text class="section-title">申请合作</text>
+      <text class="section-subtitle">填写信息，我们将尽快与您联系</text>
+    </view>
+
+    <view class="form-card">
+      <view class="form-group">
+        <text class="form-label">企业/合作社名称 *</text>
+        <input class="form-input" placeholder="请输入企业或合作社名称" bindinput="onInput" data-field="businessName"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系人 *</text>
+        <input class="form-input" placeholder="请输入联系人姓名" bindinput="onInput" data-field="contactPerson"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入联系电话" bindinput="onInput" data-field="contactPhone"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">所在地区 *</text>
+        <input class="form-input" placeholder="省份-城市-区县" bindinput="onInput" data-field="location"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">业务类型 *</text>
+        <picker mode="selector" range="{{businessTypes}}" bindchange="onTypeChange">
+          <view class="form-picker">
+            <text>{{selectedType || '请选择业务类型'}}</text>
+            <text>▾</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-group">
+        <text class="form-label">经营规模</text>
+        <textarea class="form-textarea" placeholder="请简要描述您的经营规模和现状..." bindinput="onInput" data-field="scale"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">合作意向</text>
+        <textarea class="form-textarea" placeholder="请描述您的合作需求和期望..." bindinput="onInput" data-field="intention"/>
+      </view>
+      <view class="btn btn-primary btn-lg" bindtap="submitForm">提交合作申请</view>
+    </view>
+  </view>
+
+</view>

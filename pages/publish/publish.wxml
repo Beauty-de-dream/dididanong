@@ -1,0 +1,198 @@
+<!--pages/publish/publish.wxml - 发布服务-->
+<view class="page-publish">
+
+  <!-- 顶部标签切换 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === item.key ? 'active' : ''}}" 
+          wx:for="{{tabs}}" wx:key="key" 
+          bindtap="switchTab" data-tab="{{item.key}}">
+      <text class="tab-icon">{{item.icon}}</text>
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- ============ 农机出租表单 ============ -->
+  <view class="form-section" wx:if="{{currentTab === 'machinery'}}">
+    <view class="form-header">
+      <text class="form-header-title">🚜 发布农机出租信息</text>
+      <text class="form-header-desc">将您的闲置农机发布到平台，获得额外收入</text>
+    </view>
+
+    <view class="form-card">
+      <view class="form-group">
+        <text class="form-label">农机名称 *</text>
+        <input class="form-input" placeholder="如：东风拖拉机DX1204" value="{{machineryForm.name}}" bindinput="onMachineryInput" data-field="name"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">农机类型 *</text>
+        <picker mode="selector" range="{{machineryTypes}}" bindchange="onMachineryTypeChange">
+          <view class="form-picker">
+            <text class="{{selectedMachineryType ? '' : 'placeholder'}}">{{selectedMachineryType || '请选择农机类型'}}</text>
+            <text>▾</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-group">
+        <text class="form-label">日租金（元/天） *</text>
+        <input class="form-input" type="number" placeholder="请输入日租金" value="{{machineryForm.price}}" bindinput="onMachineryInput" data-field="price"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">所在地区 *</text>
+        <input class="form-input" placeholder="如：河南省郑州市" value="{{machineryForm.location}}" bindinput="onMachineryInput" data-field="location"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">机主姓名 *</text>
+        <input class="form-input" placeholder="请输入您的姓名" value="{{machineryForm.owner}}" bindinput="onMachineryInput" data-field="owner"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入联系电话" value="{{machineryForm.phone}}" bindinput="onMachineryInput" data-field="phone"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">农机描述</text>
+        <textarea class="form-textarea" placeholder="请描述农机的性能、特点等信息" value="{{machineryForm.description}}" bindinput="onMachineryInput" data-field="description"/>
+      </view>
+      <view class="btn btn-primary btn-lg" bindtap="submitMachinery">发布农机</view>
+    </view>
+
+    <!-- 我发布的农机 -->
+    <view class="my-publish-section" wx:if="{{myMachinery.length > 0}}">
+      <text class="my-publish-title">我发布的农机（{{myMachinery.length}}）</text>
+      <view class="my-publish-list">
+        <view class="my-publish-item" wx:for="{{myMachinery}}" wx:key="id">
+          <view class="publish-item-main">
+            <text class="publish-item-name">{{item.name}}</text>
+            <text class="publish-item-badge">{{item.type}}</text>
+          </view>
+          <view class="publish-item-info">
+            <text>¥{{item.price}}/天 · {{item.location}}</text>
+          </view>
+          <text class="publish-item-time">发布于 {{item.publishTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 务工招聘表单 ============ -->
+  <view class="form-section" wx:if="{{currentTab === 'jobs'}}">
+    <view class="form-header">
+      <text class="form-header-title">💼 发布务工招聘信息</text>
+      <text class="form-header-desc">发布您的用工需求，平台帮您匹配合适的务工人员</text>
+    </view>
+
+    <view class="form-card">
+      <view class="form-group">
+        <text class="form-label">职位名称 *</text>
+        <input class="form-input" placeholder="如：阳光果园采摘员" value="{{jobForm.title}}" bindinput="onJobInput" data-field="title"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">工作地点 *</text>
+        <input class="form-input" placeholder="如：河南省洛阳市" value="{{jobForm.location}}" bindinput="onJobInput" data-field="location"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">日薪（元/天） *</text>
+        <input class="form-input" type="number" placeholder="请输入日薪金额" value="{{jobForm.salary}}" bindinput="onJobInput" data-field="salary"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">工作天数 *</text>
+        <input class="form-input" type="number" placeholder="请输入工作天数" value="{{jobForm.duration}}" bindinput="onJobInput" data-field="duration"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">任职要求</text>
+        <input class="form-input" placeholder="如：身体健康，55-70岁" value="{{jobForm.requirements}}" bindinput="onJobInput" data-field="requirements"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入联系电话" value="{{jobForm.contact}}" bindinput="onJobInput" data-field="contact"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">工作描述</text>
+        <textarea class="form-textarea" placeholder="请详细描述工作内容、工作时间、福利待遇等..." value="{{jobForm.description}}" bindinput="onJobInput" data-field="description"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">工作标签</text>
+        <input class="form-input" placeholder="用顿号分隔，如：包餐、交通补贴、轻体力" value="{{jobForm.tags}}" bindinput="onJobInput" data-field="tags"/>
+      </view>
+      <view class="btn btn-warning btn-lg" bindtap="submitJob">发布招聘</view>
+    </view>
+
+    <!-- 我发布的招聘 -->
+    <view class="my-publish-section" wx:if="{{myJobs.length > 0}}">
+      <text class="my-publish-title">我发布的招聘（{{myJobs.length}}）</text>
+      <view class="my-publish-list">
+        <view class="my-publish-item" wx:for="{{myJobs}}" wx:key="id">
+          <view class="publish-item-main">
+            <text class="publish-item-name">{{item.title}}</text>
+            <text class="publish-item-badge badge-orange">{{item.salary}}</text>
+          </view>
+          <view class="publish-item-info">
+            <text>{{item.location}} · {{item.duration}}</text>
+          </view>
+          <text class="publish-item-time">发布于 {{item.publishTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 采摘发布表单 ============ -->
+  <view class="form-section" wx:if="{{currentTab === 'picking'}}">
+    <view class="form-header">
+      <text class="form-header-title">🍎 发布采摘点信息</text>
+      <text class="form-header-desc">将您的果园、农庄发布到平台，吸引更多游客</text>
+    </view>
+
+    <view class="form-card">
+      <view class="form-group">
+        <text class="form-label">采摘点名称 *</text>
+        <input class="form-input" placeholder="如：春天草莓园" value="{{pickingForm.name}}" bindinput="onPickingInput" data-field="name"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">所在地区 *</text>
+        <input class="form-input" placeholder="如：北京市昌平区" value="{{pickingForm.location}}" bindinput="onPickingInput" data-field="location"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">价格（元/人） *</text>
+        <input class="form-input" type="number" placeholder="请输入每人价格" value="{{pickingForm.price}}" bindinput="onPickingInput" data-field="price"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">采摘季节 *</text>
+        <input class="form-input" placeholder="如：5月-10月" value="{{pickingForm.season}}" bindinput="onPickingInput" data-field="season"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">详细地址 *</text>
+        <input class="form-input" placeholder="请输入详细地址" value="{{pickingForm.address}}" bindinput="onPickingInput" data-field="address"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入联系电话" value="{{pickingForm.phone}}" bindinput="onPickingInput" data-field="phone"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">采摘点描述</text>
+        <textarea class="form-textarea" placeholder="请描述采摘点特色、设施、交通等信息..." value="{{pickingForm.description}}" bindinput="onPickingInput" data-field="description"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">特色标签</text>
+        <input class="form-input" placeholder="用顿号分隔，如：有机种植、亲子友好、现摘现吃" value="{{pickingForm.features}}" bindinput="onPickingInput" data-field="features"/>
+      </view>
+      <view class="btn btn-info btn-lg" bindtap="submitPicking">发布采摘点</view>
+    </view>
+
+    <!-- 我发布的采摘点 -->
+    <view class="my-publish-section" wx:if="{{myPickingSpots.length > 0}}">
+      <text class="my-publish-title">我发布的采摘点（{{myPickingSpots.length}}）</text>
+      <view class="my-publish-list">
+        <view class="my-publish-item" wx:for="{{myPickingSpots}}" wx:key="id">
+          <view class="publish-item-main">
+            <text class="publish-item-name">{{item.name}}</text>
+            <text class="publish-item-badge badge-blue">{{item.price}}</text>
+          </view>
+          <view class="publish-item-info">
+            <text>{{item.location}} · {{item.season}}</text>
+          </view>
+          <text class="publish-item-time">发布于 {{item.publishTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

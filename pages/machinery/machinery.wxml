@@ -1,0 +1,162 @@
+<!--pages/machinery/machinery.wxml - 农机共享页面-->
+<view class="page-machinery {{elderMode ? 'elder-mode' : ''}}">
+
+  <!-- 朗读按钮（悬浮） -->
+  <view class="read-aloud-btn" bindtap="onReadAloud" wx:if="{{elderMode}}">
+    <text class="read-icon">🔊</text>
+    <text class="read-label">朗读</text>
+  </view>
+
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-header-title">🚜 农机共享</text>
+    <text class="page-header-desc">盘活闲置农机，提高生产效率</text>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <picker mode="selector" range="{{typeOptions}}" bindchange="onTypeChange">
+      <view class="filter-item {{selectedType ? 'active' : ''}}">
+        <text>{{selectedType || '农机类型'}}</text>
+        <text class="arrow">▾</text>
+      </view>
+    </picker>
+    <picker mode="selector" range="{{locationOptions}}" bindchange="onLocationChange">
+      <view class="filter-item {{selectedLocation ? 'active' : ''}}">
+        <text>{{selectedLocation || '所在地区'}}</text>
+        <text class="arrow">▾</text>
+      </view>
+    </picker>
+    <view class="filter-item" bindtap="resetFilter" wx:if="{{selectedType || selectedLocation}}">
+      <text class="reset-text">重置</text>
+    </view>
+  </view>
+
+  <view class="result-count">
+    <text>共找到 {{filteredMachinery.length}} 个结果</text>
+  </view>
+
+  <!-- 服务介绍 -->
+  <view class="service-section hide-in-elder">
+    <view class="service-card">
+      <text class="service-title">👔 对农机主</text>
+      <view class="service-list">
+        <text class="service-item">✅ 盘活闲置农机设备</text>
+        <text class="service-item">✅ 增加额外收入来源</text>
+        <text class="service-item">✅ 智能订单管理系统</text>
+        <text class="service-item">✅ 全程保险保障</text>
+      </view>
+    </view>
+    <view class="service-card">
+      <text class="service-title">🌱 对农户</text>
+      <view class="service-list">
+        <text class="service-item">✅ 解决农机稀缺问题</text>
+        <text class="service-item">✅ 合理透明的定价</text>
+        <text class="service-item">✅ 就近匹配农机资源</text>
+        <text class="service-item">✅ 专业技术支持</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 农机列表 -->
+  <view class="machinery-list">
+    <view class="card machinery-card" wx:for="{{filteredMachinery}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <view class="card-image-wrap">
+        <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <text class="status-badge {{item.available ? 'badge-green' : 'badge-red'}}">
+          {{item.available ? '可租用' : '已租出'}}
+        </text>
+      </view>
+      <view class="card-body">
+        <view class="flex-between">
+          <text class="card-title">{{item.name}}</text>
+          <text class="badge badge-blue">{{item.type}}</text>
+        </view>
+        <text class="card-desc">{{item.description}}</text>
+        <view class="card-meta">
+          <view class="icon-text"><text>📍 {{item.location}}</text></view>
+          <view class="icon-text"><text>👤 机主：{{item.owner}}</text></view>
+        </view>
+        <view class="flex-between" style="margin-top: 16rpx;">
+          <view>
+            <text class="price">¥{{item.price}}</text>
+            <text class="price-unit">/天</text>
+          </view>
+          <view class="btn-group">
+            <text class="btn-mini btn-outline-mini">详情</text>
+            <text class="btn-mini btn-primary-mini" wx:if="{{item.available}}" catchtap="onBookMachinery" data-id="{{item.id}}">租用</text>
+            <text class="btn-mini btn-disabled-mini" wx:else>已租出</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{filteredMachinery.length === 0}}">
+    <text class="empty-icon-text">🔍</text>
+    <text class="empty-text">暂无符合条件的农机</text>
+    <text class="empty-hint">请尝试调整筛选条件</text>
+  </view>
+
+  <!-- 使用流程 -->
+  <view class="process-section hide-in-elder">
+    <view class="section-header">
+      <text class="section-title">使用流程</text>
+      <text class="section-subtitle">简单四步，轻松租用农机</text>
+    </view>
+    <view class="process-steps">
+      <view class="step-item">
+        <view class="step-num step-num-1">1</view>
+        <text class="step-title">发布需求</text>
+        <text class="step-desc">农机主发布闲置农机信息</text>
+      </view>
+      <view class="step-item">
+        <view class="step-num step-num-2">2</view>
+        <text class="step-title">搜索下单</text>
+        <text class="step-desc">农户根据需求搜索并下单</text>
+      </view>
+      <view class="step-item">
+        <view class="step-num step-num-3">3</view>
+        <text class="step-title">平台保障</text>
+        <text class="step-desc">平台提供安全保障</text>
+      </view>
+      <view class="step-item">
+        <view class="step-num step-num-4">4</view>
+        <text class="step-title">完成交易</text>
+        <text class="step-desc">作业完成，评价反馈</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 智能监测 -->
+  <view class="monitor-section hide-in-elder">
+    <text class="monitor-title">实时智能监测</text>
+    <text class="monitor-desc">通过IoT设备和GPS定位，实时监测农机作业状态</text>
+    <view class="monitor-features">
+      <view class="monitor-item">
+        <text class="monitor-icon">📡</text>
+        <text>GPS实时定位追踪</text>
+      </view>
+      <view class="monitor-item">
+        <text class="monitor-icon">📊</text>
+        <text>作业效率实时监控</text>
+      </view>
+      <view class="monitor-item">
+        <text class="monitor-icon">🛡️</text>
+        <text>设备状态安全监测</text>
+      </view>
+      <view class="monitor-item">
+        <text class="monitor-icon">📱</text>
+        <text>手机实时查看</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="fab-btn" bindtap="goToPublish">
+    <text class="fab-icon">+</text>
+    <text class="fab-text">发布农机</text>
+  </view>
+
+</view>

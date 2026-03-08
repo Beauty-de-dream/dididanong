@@ -1,0 +1,76 @@
+<!--pages/jobs-detail/jobs-detail.wxml-->
+<view class="page-detail">
+  <view wx:if="{{job}}">
+    <!-- 工作信息 -->
+    <view class="job-header">
+      <text class="job-title">{{job.title}}</text>
+      <text class="job-salary">{{job.salary}}</text>
+    </view>
+
+    <!-- 工作详情 -->
+    <view class="detail-card">
+      <text class="card-title">工作详情</text>
+      <text class="job-desc">{{job.description}}</text>
+
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">📍 工作地点</text>
+          <text class="info-value">{{job.location}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">⏰ 工作时长</text>
+          <text class="info-value">{{job.duration}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">👤 任职要求</text>
+          <text class="info-value">{{job.requirements}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">💰 薪资待遇</text>
+          <text class="info-value salary">{{job.salary}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">📞 联系电话</text>
+          <text class="info-value link" bindtap="callContact">{{job.contact}}</text>
+        </view>
+      </view>
+
+      <view class="tag-list" wx:if="{{job.tags}}">
+        <text class="tag tag-green" wx:for="{{job.tags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- 申请表单 -->
+    <view class="detail-card" wx:if="{{showApplyForm}}">
+      <text class="card-title">申请工作</text>
+      <view class="form-group">
+        <text class="form-label">姓名 *</text>
+        <input class="form-input" placeholder="请输入姓名" bindinput="onInput" data-field="userName"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入电话号码" bindinput="onInput" data-field="phone"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">年龄 *</text>
+        <input class="form-input" type="number" placeholder="请输入年龄" bindinput="onInput" data-field="age"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">工作经验</text>
+        <textarea class="form-textarea" placeholder="请简要描述您的工作经验" bindinput="onInput" data-field="experience"/>
+      </view>
+      <view class="btn btn-warning btn-lg" style="margin-top:30rpx;" bindtap="submitApply">提交申请</view>
+    </view>
+
+    <!-- 底部操作 -->
+    <view class="bottom-bar">
+      <view class="bottom-btn-left" bindtap="callContact">
+        <text class="bottom-icon">📞</text>
+        <text class="bottom-label">拨打电话</text>
+      </view>
+      <view class="bottom-btn-right warning" bindtap="toggleApplyForm">
+        <text>{{showApplyForm ? '收起表单' : '立即申请'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,238 @@
+<!--pages/index/index.wxml - 首页-->
+<view class="page-index {{elderMode ? 'elder-mode' : ''}}">
+
+  <!-- 朗读按钮（悬浮） -->
+  <view class="read-aloud-btn" bindtap="onReadAloud" wx:if="{{elderMode}}">
+    <text class="read-icon">🔊</text>
+    <text class="read-label">朗读</text>
+  </view>
+
+  <!-- 顶部横幅 -->
+  <view class="hero-banner">
+    <view class="hero-overlay">
+      <view class="hero-content">
+        <text class="hero-title">连接希望的田野</text>
+        <text class="hero-subtitle">让每一份耕耘都有价值</text>
+        <text class="hero-desc">滴滴一下，农忙不愁！智能匹配农机资源、务工需求和乡村体验</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快速入口 -->
+  <view class="quick-entry">
+    <view class="entry-item" bindtap="goToMachinery">
+      <view class="entry-icon entry-icon-green">🚜</view>
+      <text class="entry-text">租农机</text>
+    </view>
+    <view class="entry-item" bindtap="goToJobs">
+      <view class="entry-icon entry-icon-orange">👥</view>
+      <text class="entry-text">找工作</text>
+    </view>
+    <view class="entry-item" bindtap="goToPicking">
+      <view class="entry-icon entry-icon-blue">🍎</view>
+      <text class="entry-text">去采摘</text>
+    </view>
+    <view class="entry-item" bindtap="goToAbout">
+      <view class="entry-icon entry-icon-red">📋</view>
+      <text class="entry-text">关于我们</text>
+    </view>
+  </view>
+
+  <!-- 平台优势 -->
+  <view class="section hide-in-elder">
+    <view class="section-header">
+      <text class="section-title">平台优势</text>
+      <text class="section-subtitle">四大核心优势，为您提供全方位服务</text>
+    </view>
+    <view class="advantage-grid">
+      <view class="advantage-item">
+        <text class="advantage-icon">🧠</text>
+        <text class="advantage-name">智能匹配</text>
+        <text class="advantage-desc">AI算法精准匹配</text>
+      </view>
+      <view class="advantage-item">
+        <text class="advantage-icon">🛡️</text>
+        <text class="advantage-name">安全保障</text>
+        <text class="advantage-desc">全程保险覆盖</text>
+      </view>
+      <view class="advantage-item">
+        <text class="advantage-icon">💰</text>
+        <text class="advantage-name">增加收入</text>
+        <text class="advantage-desc">盘活闲置资源</text>
+      </view>
+      <view class="advantage-item">
+        <text class="advantage-icon">👔</text>
+        <text class="advantage-name">乡贤推荐</text>
+        <text class="advantage-desc">信誉可靠信赖</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 实时数据 -->
+  <view class="stats-section hide-in-elder">
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-number stat-green">{{stats.machineryCount}}+</text>
+        <text class="stat-label">注册农机</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-number stat-orange">{{stats.workerCount}}+</text>
+        <text class="stat-label">活跃务工人</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-number stat-blue">{{stats.gardenCount}}+</text>
+        <text class="stat-label">合作采摘园</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-number stat-primary">{{stats.satisfaction}}%</text>
+        <text class="stat-label">用户满意度</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 精选农机 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">精选农机</text>
+      <text class="section-subtitle">优质农机设备，助力农业生产</text>
+    </view>
+    <scroll-view scroll-x class="horizontal-scroll">
+      <view class="scroll-item" wx:for="{{featuredMachinery}}" wx:key="id" bindtap="goToMachineryDetail" data-id="{{item.id}}">
+        <view class="card machinery-card">
+          <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="card-body">
+            <view class="flex-between">
+              <text class="card-title">{{item.name}}</text>
+              <text class="badge badge-green">{{item.type}}</text>
+            </view>
+            <text class="card-desc">{{item.description}}</text>
+            <view class="icon-text">
+              <text>📍 {{item.location}}</text>
+            </view>
+            <view class="flex-between" style="margin-top: 16rpx;">
+              <text class="price">¥{{item.price}}<text class="price-unit">/天</text></text>
+              <text class="link-text">查看详情 ></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="section-footer" bindtap="goToMachinery">
+      <text class="more-link">查看更多农机 →</text>
+    </view>
+  </view>
+
+  <!-- 热门工作 -->
+  <view class="section section-gray">
+    <view class="section-header">
+      <text class="section-title">热门工作</text>
+      <text class="section-subtitle">夕阳红助农计划，为长者创造就业机会</text>
+    </view>
+    <view class="job-list">
+      <view class="card job-card" wx:for="{{featuredJobs}}" wx:key="id" bindtap="goToJobDetail" data-id="{{item.id}}">
+        <view class="card-body">
+          <view class="flex-between">
+            <text class="card-title">{{item.title}}</text>
+            <text class="badge badge-green">{{item.salary}}</text>
+          </view>
+          <text class="card-desc">{{item.description}}</text>
+          <view class="job-meta">
+            <view class="icon-text"><text>📍 {{item.location}}</text></view>
+            <view class="icon-text"><text>⏰ {{item.duration}}</text></view>
+            <view class="icon-text"><text>👤 {{item.requirements}}</text></view>
+          </view>
+          <view class="flex-between" style="margin-top: 16rpx;">
+            <text class="salary-text">{{item.salary}}</text>
+            <text class="link-text">立即申请 ></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="section-footer" bindtap="goToJobs">
+      <text class="more-link">查看更多工作 →</text>
+    </view>
+  </view>
+
+  <!-- 热门采摘点 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">热门采摘点</text>
+      <text class="section-subtitle">亲近自然，体验农家乐趣</text>
+    </view>
+    <scroll-view scroll-x class="horizontal-scroll">
+      <view class="scroll-item" wx:for="{{featuredSpots}}" wx:key="id" bindtap="goToPickingDetail" data-id="{{item.id}}">
+        <view class="card picking-card">
+          <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="card-body">
+            <text class="card-title">{{item.name}}</text>
+            <text class="card-desc">{{item.description}}</text>
+            <view class="icon-text">
+              <text>📍 {{item.location}}</text>
+            </view>
+            <view class="icon-text">
+              <text>📅 {{item.season}}</text>
+            </view>
+            <view class="tags">
+              <text class="tag tag-blue" wx:for="{{item.features}}" wx:key="*this" wx:for-item="feature">{{feature}}</text>
+            </view>
+            <view class="flex-between" style="margin-top: 16rpx;">
+              <text class="price">{{item.price}}</text>
+              <text class="link-text">立即预订 ></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="section-footer" bindtap="goToPicking">
+      <text class="more-link">查看更多采摘点 →</text>
+    </view>
+  </view>
+
+  <!-- 用户评价 -->
+  <view class="section testimonial-section hide-in-elder">
+    <view class="section-header">
+      <text class="section-title" style="color: #fff;">用户评价</text>
+      <text class="section-subtitle" style="color: rgba(255,255,255,0.8);">听听用户的真实声音</text>
+    </view>
+    <scroll-view scroll-x class="horizontal-scroll">
+      <view class="scroll-item" wx:for="{{testimonials}}" wx:key="name">
+        <view class="testimonial-card">
+          <view class="stars">
+            <text wx:for="{{5}}" wx:key="*this" wx:for-item="star" wx:for-index="starIdx" class="star-icon">{{starIdx < item.rating ? '⭐' : '☆'}}</text>
+          </view>
+          <text class="testimonial-content">"{{item.content}}"</text>
+          <view class="testimonial-author">
+            <text class="author-name">{{item.name}}</text>
+            <text class="author-age" wx:if="{{item.age}}"> ({{item.age}}岁)</text>
+            <text class="author-role">{{item.role}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 新闻动态 -->
+  <view class="section hide-in-elder">
+    <view class="section-header">
+      <text class="section-title">新闻动态</text>
+      <text class="section-subtitle">了解最新的平台动态和行业资讯</text>
+    </view>
+    <view class="news-list">
+      <view class="news-item" wx:for="{{news}}" wx:key="title">
+        <text class="news-date">{{item.date}}</text>
+        <text class="news-title">{{item.title}}</text>
+        <text class="news-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部合作推广入口 -->
+  <view class="bottom-cta hide-in-elder">
+    <view class="cta-card" bindtap="goToPartnership">
+      <text class="cta-title">🤝 成为合作伙伴</text>
+      <text class="cta-desc">携手共建美好乡村，共创农业未来</text>
+      <text class="cta-link">了解更多 →</text>
+    </view>
+  </view>
+
+</view>

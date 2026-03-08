@@ -1,0 +1,221 @@
+/* pages/partnership/partnership.wxss */
+
+.page-partnership {
+  padding-bottom: 40rpx;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #FFA726 0%, #FF9800 50%, #E65100 100%);
+  padding: 50rpx 30rpx 70rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12rpx;
+}
+
+.page-header-desc {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.section {
+  padding: 40rpx 24rpx;
+}
+
+.section-gray {
+  background: #f5f5f5;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.section-subtitle {
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+}
+
+/* 合作卡片 */
+.coop-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.coop-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 30rpx;
+  box-shadow: var(--shadow-md);
+}
+
+.coop-icon {
+  font-size: 56rpx;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.coop-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.coop-desc {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 20rpx;
+  line-height: 1.6;
+}
+
+.coop-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.coop-item {
+  font-size: 26rpx;
+  color: #555;
+  margin-bottom: 10rpx;
+  display: block;
+  white-space: normal;
+  line-height: 1.6;
+}
+
+/* 案例卡片 */
+.case-cards {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 20rpx;
+  -webkit-overflow-scrolling: touch;
+}
+
+.case-card {
+  width: 500rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.case-avatar-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF9800, #E65100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.case-avatar-text {
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.case-city {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.case-type {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+
+.case-desc {
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+  margin-bottom: 16rpx;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.8;
+}
+
+/* 优势列表 */
+.advantage-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.advantage-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16rpx;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease;
+}
+
+.advantage-item:active {
+  transform: translateX(8rpx);
+}
+
+.advantage-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.advantage-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.advantage-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.advantage-desc {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 1.6;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* 表单 */
+.form-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 36rpx;
+  box-shadow: var(--shadow-md);
+}

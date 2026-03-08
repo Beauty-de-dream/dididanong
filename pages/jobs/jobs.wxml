@@ -1,0 +1,156 @@
+<!--pages/jobs/jobs.wxml - 助农务工页面-->
+<view class="page-jobs {{elderMode ? 'elder-mode' : ''}}">
+
+  <!-- 朗读按钮（悬浮） -->
+  <view class="read-aloud-btn" bindtap="onReadAloud" wx:if="{{elderMode}}">
+    <text class="read-icon">🔊</text>
+    <text class="read-label">朗读</text>
+  </view>
+
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-header-title">👥 助农务工</text>
+    <text class="page-header-desc">"夕阳红"助农计划 - 为乡村长者创造就业机会</text>
+  </view>
+
+  <!-- 项目介绍 -->
+  <view class="intro-section hide-in-elder">
+    <text class="intro-title">夕阳红助农计划</text>
+    <text class="intro-desc">专为55-70岁的乡村长者设计的就业计划，提供短期、安全、有保障的农业工作机会。</text>
+    
+    <view class="promise-list">
+      <view class="promise-item">
+        <text class="promise-icon">💰</text>
+        <view class="promise-content">
+          <text class="promise-title">保障收入</text>
+          <text class="promise-desc">明确合理的薪酬定价，按时发放工资</text>
+        </view>
+      </view>
+      <view class="promise-item">
+        <text class="promise-icon">🛡️</text>
+        <view class="promise-content">
+          <text class="promise-title">人身保障</text>
+          <text class="promise-desc">提供基础人身意外伤害保障，关爱空巢与失独老人</text>
+        </view>
+      </view>
+      <view class="promise-item">
+        <text class="promise-icon">📅</text>
+        <view class="promise-content">
+          <text class="promise-title">灵活就业</text>
+          <text class="promise-desc">农忙时期短期合同，时间灵活安排</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 地区筛选 -->
+  <view class="filter-bar">
+    <picker mode="selector" range="{{locationOptions}}" bindchange="onLocationChange">
+      <view class="filter-item {{selectedLocation ? 'active' : ''}}">
+        <text>{{selectedLocation || '选择地区'}}</text>
+        <text class="arrow">▾</text>
+      </view>
+    </picker>
+    <view class="filter-item" bindtap="resetFilter" wx:if="{{selectedLocation}}">
+      <text class="reset-text">重置</text>
+    </view>
+  </view>
+
+  <!-- 工作列表 -->
+  <view class="section">
+    <view class="section-header" style="align-items: flex-start;">
+      <text class="section-title">最新工作机会</text>
+      <text class="section-subtitle">为您精选合适的工作岗位</text>
+    </view>
+    
+    <view class="job-list">
+      <view class="card job-card" wx:for="{{filteredJobs}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="card-body">
+          <view class="flex-between">
+            <text class="job-title">{{item.title}}</text>
+            <text class="badge badge-green">{{item.salary}}</text>
+          </view>
+          <text class="card-desc">{{item.description}}</text>
+          
+          <view class="job-details">
+            <view class="icon-text"><text>📍 工作地点：{{item.location}}</text></view>
+            <view class="icon-text"><text>⏰ 工作时长：{{item.duration}}</text></view>
+            <view class="icon-text"><text>👤 任职要求：{{item.requirements}}</text></view>
+            <view class="icon-text"><text>📞 联系电话：{{item.contact}}</text></view>
+          </view>
+
+          <view class="tag-list" wx:if="{{item.tags}}">
+            <text class="tag tag-green" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+          </view>
+
+          <view class="job-actions">
+            <view class="btn btn-outline btn-sm" style="flex:1; margin-right:16rpx;">查看详情</view>
+            <view class="btn btn-warning btn-sm" style="flex:1;" catchtap="onApplyJob" data-id="{{item.id}}">立即申请</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredJobs.length === 0}}">
+      <text style="font-size:80rpx;">💼</text>
+      <text class="empty-text">暂无符合条件的工作</text>
+      <text style="font-size:26rpx;color:#bbb;margin-top:12rpx;">请尝试调整筛选条件或稍后再来</text>
+    </view>
+  </view>
+
+  <!-- 如何加入 -->
+  <view class="section hide-in-elder" style="background:#f5f5f5;">
+    <view class="section-header">
+      <text class="section-title">如何加入</text>
+      <text class="section-subtitle">简单三步，开始您的务工之旅</text>
+    </view>
+    
+    <view class="join-steps">
+      <view class="join-step">
+        <view class="step-num" style="background:#1976D2;">1</view>
+        <text class="step-title">注册登记</text>
+        <text class="step-desc">完成个人信息注册，上传身份证件</text>
+      </view>
+      <view class="join-step">
+        <view class="step-num" style="background:#4CAF50;">2</view>
+        <text class="step-title">技能评估</text>
+        <text class="step-desc">完成简单的技能评估和健康确认</text>
+      </view>
+      <view class="join-step">
+        <view class="step-num" style="background:#FF9800;">3</view>
+        <text class="step-title">开始工作</text>
+        <text class="step-desc">匹配成功后签署合同，开始务工</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成功案例 -->
+  <view class="section hide-in-elder">
+    <view class="section-header">
+      <text class="section-title">成功案例</text>
+      <text class="section-subtitle">听听他们的故事</text>
+    </view>
+    
+    <view class="case-list">
+      <view class="case-card" wx:for="{{cases}}" wx:key="name">
+        <view class="case-avatar-wrap">
+          <text class="case-avatar-placeholder">{{item.name[0]}}</text>
+        </view>
+        <text class="case-name">{{item.name}}</text>
+        <text class="case-location">{{item.location}}</text>
+        <text class="case-content">"{{item.content}}"</text>
+        <view class="stars">
+          <text wx:for="{{5}}" wx:key="*this" class="star-icon">⭐</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="fab-btn fab-orange" bindtap="goToPublish">
+    <text class="fab-icon">+</text>
+    <text class="fab-text">发布招聘</text>
+  </view>
+
+</view>

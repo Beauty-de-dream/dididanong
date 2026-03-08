@@ -1,0 +1,88 @@
+<!--pages/picking-detail/picking-detail.wxml-->
+<view class="page-detail">
+  <view wx:if="{{spot}}">
+    <!-- 图片 -->
+    <image class="detail-image" src="{{spot.image}}" mode="aspectFill"></image>
+
+    <!-- 基本信息 -->
+    <view class="detail-info">
+      <text class="detail-name">{{spot.name}}</text>
+      <view class="price-row">
+        <text class="detail-price">{{spot.price}}</text>
+      </view>
+      <view class="tag-list">
+        <text class="tag tag-blue" wx:for="{{spot.features}}" wx:key="*this">{{item}}</text>
+      </view>
+      <text class="detail-desc">{{spot.description}}</text>
+    </view>
+
+    <!-- 详细信息 -->
+    <view class="detail-card">
+      <text class="card-title">详细信息</text>
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">📍 地址</text>
+          <text class="info-value">{{spot.address}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">📅 采摘季节</text>
+          <text class="info-value">{{spot.season}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">💰 价格</text>
+          <text class="info-value">{{spot.price}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">📞 联系电话</text>
+          <text class="info-value link" bindtap="callSpot">{{spot.phone}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 预订表单 -->
+    <view class="detail-card" wx:if="{{showBookForm}}">
+      <text class="card-title">预订采摘</text>
+      <view class="form-group">
+        <text class="form-label">姓名 *</text>
+        <input class="form-input" placeholder="请输入姓名" bindinput="onInput" data-field="userName"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入电话号码" bindinput="onInput" data-field="phone"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">到访日期 *</text>
+        <picker mode="date" bindchange="onDateChange">
+          <view class="form-picker">
+            <text>{{formData.visitDate || '请选择到访日期'}}</text>
+            <text>▾</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-group">
+        <text class="form-label">人数 *</text>
+        <input class="form-input" type="number" placeholder="请输入人数" bindinput="onInput" data-field="peopleCount"/>
+      </view>
+      <view class="cost-preview" wx:if="{{formData.peopleCount}}">
+        <text class="cost-label">预计费用：</text>
+        <text class="cost-value">¥{{spot.priceNum * formData.peopleCount}}</text>
+      </view>
+      <view class="btn btn-info btn-lg" style="margin-top:30rpx;" bindtap="submitBooking">确认预订</view>
+    </view>
+
+    <!-- 底部操作 -->
+    <view class="bottom-bar">
+      <view class="bottom-btn-left" bindtap="callSpot">
+        <text class="bottom-icon">📞</text>
+        <text class="bottom-label">联系园区</text>
+      </view>
+      <view class="bottom-btn-left" bindtap="openLocation">
+        <text class="bottom-icon">📍</text>
+        <text class="bottom-label">导航</text>
+      </view>
+      <view class="bottom-btn-right info" bindtap="toggleBookForm">
+        <text>{{showBookForm ? '收起表单' : '立即预订'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

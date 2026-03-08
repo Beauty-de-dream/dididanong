@@ -1,0 +1,583 @@
+/* app.wxss - 全局样式 */
+
+/* 颜色变量 */
+page {
+  --primary-color: #4CAF50;
+  --primary-dark: #388E3C;
+  --primary-light: #C8E6C9;
+  --warning-color: #FF9800;
+  --warning-dark: #E65100;
+  --info-color: #2196F3;
+  --info-dark: #1565C0;
+  --danger-color: #F44336;
+  --text-color: #333333;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --bg-color: #f5f5f5;
+  --white: #ffffff;
+  --border-color: #eeeeee;
+  --shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8rpx 30rpx rgba(0, 0, 0, 0.12);
+  --radius-sm: 12rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 全局文本防溢出 */
+view, text {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 通用容器 */
+.container {
+  padding: 30rpx;
+}
+
+/* 卡片样式 */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-body {
+  padding: 24rpx;
+  overflow: hidden;
+}
+
+/* 标题样式 */
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+  display: block;
+  line-height: 1.4;
+}
+
+.section-subtitle {
+  font-size: 26rpx;
+  color: var(--text-muted);
+  margin-bottom: 30rpx;
+  display: block;
+  line-height: 1.5;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tag-green {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.tag-orange {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.tag-blue {
+  background: #E3F2FD;
+  color: #1565C0;
+}
+
+.tag-red {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+/* 按钮样式 */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.btn:active {
+  opacity: 0.85;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-warning {
+  background: var(--warning-color);
+  color: var(--white);
+}
+
+.btn-info {
+  background: var(--info-color);
+  color: var(--white);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2rpx solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-warning {
+  background: transparent;
+  border: 2rpx solid var(--warning-color);
+  color: var(--warning-color);
+}
+
+.btn-sm {
+  height: 60rpx;
+  font-size: 26rpx;
+  padding: 0 30rpx;
+  border-radius: 30rpx;
+}
+
+.btn-lg {
+  height: 96rpx;
+  font-size: 34rpx;
+  border-radius: 48rpx;
+}
+
+/* 价格样式 */
+.price {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 36rpx;
+}
+
+.price-unit {
+  font-size: 24rpx;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+/* 图标文字排列 */
+.icon-text {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: var(--text-muted);
+  margin-bottom: 10rpx;
+  line-height: 1.5;
+}
+
+.icon-text text {
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.icon-text .icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+/* 徽标 */
+.badge {
+  display: inline-block;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: var(--white);
+}
+
+.badge-green {
+  background: var(--primary-color);
+}
+
+.badge-red {
+  background: var(--danger-color);
+}
+
+.badge-orange {
+  background: var(--warning-color);
+}
+
+.badge-blue {
+  background: var(--info-color);
+}
+
+/* Flex 布局 */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16rpx;
+  overflow: hidden;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background: var(--border-color);
+  margin: 20rpx 0;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.empty-state .empty-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-state .empty-text {
+  font-size: 30rpx;
+  color: var(--text-muted);
+}
+
+/* 星级评分 */
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 4rpx;
+}
+
+/* 加载状态 */
+.loading-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+}
+
+/* 表单相关 */
+.form-group {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: var(--text-color);
+  font-weight: 500;
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  height: 84rpx;
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  border: 2rpx solid transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary-color);
+  background: var(--white);
+}
+
+.form-textarea {
+  width: 100%;
+  height: 200rpx;
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  border: 2rpx solid transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--primary-color);
+  background: var(--white);
+}
+
+.form-picker {
+  width: 100%;
+  height: 84rpx;
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border: 2rpx solid transparent;
+}
+
+/* ================================================================
+   老人模式全局样式覆盖
+   当页面根节点添加 .elder-mode 类时生效
+   ================================================================ */
+
+/* 基础字体放大 */
+.elder-mode {
+  font-size: 36rpx !important;
+}
+
+.elder-mode view,
+.elder-mode text {
+  line-height: 1.6;
+}
+
+/* 标题放大 */
+.elder-mode .section-title {
+  font-size: 44rpx !important;
+  font-weight: bold;
+}
+
+.elder-mode .section-subtitle {
+  font-size: 32rpx !important;
+}
+
+/* 卡片内容放大 */
+.elder-mode .card-title,
+.elder-mode .card-header-title {
+  font-size: 38rpx !important;
+}
+
+.elder-mode .card-desc {
+  font-size: 32rpx !important;
+}
+
+.elder-mode .card-body {
+  padding: 32rpx !important;
+}
+
+/* 按钮放大 */
+.elder-mode .btn {
+  height: 100rpx !important;
+  font-size: 36rpx !important;
+  border-radius: 50rpx !important;
+}
+
+.elder-mode .btn-sm {
+  height: 80rpx !important;
+  font-size: 32rpx !important;
+}
+
+/* 标签放大 */
+.elder-mode .tag {
+  font-size: 28rpx !important;
+  padding: 10rpx 20rpx !important;
+}
+
+.elder-mode .badge {
+  font-size: 28rpx !important;
+  padding: 8rpx 20rpx !important;
+}
+
+/* 价格放大 */
+.elder-mode .price {
+  font-size: 44rpx !important;
+}
+
+.elder-mode .price-unit {
+  font-size: 30rpx !important;
+}
+
+/* 图标文字放大 */
+.elder-mode .icon-text {
+  font-size: 32rpx !important;
+  margin-bottom: 14rpx !important;
+}
+
+/* 表单放大 */
+.elder-mode .form-label {
+  font-size: 34rpx !important;
+}
+
+.elder-mode .form-input {
+  height: 100rpx !important;
+  font-size: 34rpx !important;
+}
+
+.elder-mode .form-textarea {
+  font-size: 34rpx !important;
+}
+
+/* 菜单项放大 */
+.elder-mode .menu-item,
+.elder-mode .menu-text {
+  font-size: 36rpx !important;
+}
+
+.elder-mode .menu-icon {
+  font-size: 44rpx !important;
+}
+
+/* 链接文字放大 */
+.elder-mode .link-text,
+.elder-mode .more-link {
+  font-size: 32rpx !important;
+}
+
+/* 页面头部放大 */
+.elder-mode .page-header-title {
+  font-size: 48rpx !important;
+}
+
+.elder-mode .page-header-desc {
+  font-size: 32rpx !important;
+}
+
+/* 筛选栏放大 */
+.elder-mode .filter-item {
+  font-size: 32rpx !important;
+  height: 76rpx !important;
+}
+
+/* 隐藏非核心元素（老人模式下精简页面） */
+.elder-mode .hide-in-elder {
+  display: none !important;
+}
+
+/* 朗读悬浮按钮通用样式 */
+.read-aloud-btn {
+  position: fixed;
+  right: 32rpx;
+  bottom: 350rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(255,152,0,0.4);
+  z-index: 999;
+  transition: transform 0.2s ease;
+}
+
+.read-aloud-btn:active {
+  transform: scale(0.92);
+}
+
+.read-aloud-btn .read-icon {
+  font-size: 40rpx;
+  line-height: 1;
+}
+
+.read-aloud-btn .read-label {
+  font-size: 22rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 4rpx;
+}
+
+/* 老人模式下增加间距和触摸区域 */
+.elder-mode .card {
+  margin-bottom: 32rpx !important;
+}
+
+.elder-mode .section {
+  padding: 36rpx !important;
+}
+
+/* 老人模式下订单相关放大 */
+.elder-mode .order-icon {
+  font-size: 56rpx !important;
+}
+
+.elder-mode .order-label {
+  font-size: 32rpx !important;
+}
+
+/* 老人模式下发布网格放大 */
+.elder-mode .publish-icon {
+  font-size: 56rpx !important;
+}
+
+.elder-mode .publish-label {
+  font-size: 34rpx !important;
+}
+
+.elder-mode .publish-desc {
+  font-size: 28rpx !important;
+}
+
+/* 老人模式下快速入口放大 */
+.elder-mode .entry-icon {
+  font-size: 56rpx !important;
+  width: 120rpx !important;
+  height: 120rpx !important;
+}
+
+.elder-mode .entry-text {
+  font-size: 34rpx !important;
+}
+
+/* 老人模式下统计数据放大 */
+.elder-mode .stat-number {
+  font-size: 48rpx !important;
+}
+
+.elder-mode .stat-label {
+  font-size: 30rpx !important;
+}

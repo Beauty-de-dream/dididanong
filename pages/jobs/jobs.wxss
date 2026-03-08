@@ -1,0 +1,332 @@
+/* pages/jobs/jobs.wxss */
+
+.page-jobs {
+  padding-bottom: 140rpx;
+}
+
+/* 悬浮发布按钮 */
+.fab-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: calc(120rpx + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  background: #4CAF50;
+  color: #fff;
+  padding: 20rpx 32rpx;
+  border-radius: 48rpx;
+  box-shadow: 0 8rpx 24rpx rgba(76, 175, 80, 0.4);
+  z-index: 99;
+  transition: transform 0.2s;
+}
+
+.fab-orange {
+  background: #FF9800;
+  box-shadow: 0 8rpx 24rpx rgba(255, 152, 0, 0.4);
+}
+
+.fab-btn:active {
+  transform: scale(0.92);
+}
+
+.fab-icon {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-right: 8rpx;
+}
+
+.fab-text {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #FFA726 0%, #FF9800 50%, #E65100 100%);
+  padding: 50rpx 30rpx 70rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12rpx;
+}
+
+.page-header-desc {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+/* 项目介绍 */
+.intro-section {
+  background: #fff;
+  margin: -30rpx 24rpx 24rpx;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+
+.intro-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.intro-desc {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 24rpx;
+  line-height: 1.8;
+  white-space: normal;
+}
+
+.promise-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.promise-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 16rpx 0;
+}
+
+.promise-icon {
+  font-size: 44rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.promise-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.promise-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.promise-desc {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  white-space: normal;
+  line-height: 1.6;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  padding: 20rpx 24rpx;
+  gap: 16rpx;
+}
+
+/* 通用段落 */
+.section {
+  padding: 40rpx 24rpx;
+}
+
+.section-gray {
+  background: #f5f5f5;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.filter-item {
+  flex: 1;
+  height: 68rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #666;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.filter-item.active {
+  background: #FFF3E0;
+  color: #FF9800;
+}
+
+.arrow {
+  margin-left: 8rpx;
+  font-size: 20rpx;
+}
+
+.reset-text {
+  color: #F44336;
+}
+
+/* 工作卡片 */
+.job-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-card {
+  margin-bottom: 24rpx;
+}
+
+.job-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1976D2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+  display: block;
+}
+
+.job-details {
+  margin-top: 16rpx;
+  padding: 16rpx;
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16rpx;
+}
+
+.job-actions {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+/* 加入步骤 */
+.join-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.join-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.step-num {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+.step-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: block;
+  text-align: center;
+  white-space: normal;
+}
+
+.step-desc {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+/* 成功案例 */
+.case-list {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 20rpx;
+  -webkit-overflow-scrolling: touch;
+}
+
+.case-card {
+  width: 500rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.case-avatar-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.case-avatar-placeholder {
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.case-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.case-location {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+
+.case-content {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 16rpx;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.stars {
+  display: flex;
+}
+
+.star-icon {
+  font-size: 24rpx;
+}

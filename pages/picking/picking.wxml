@@ -1,0 +1,182 @@
+<!--pages/picking/picking.wxml - 乡村采摘游页面-->
+<view class="page-picking {{elderMode ? 'elder-mode' : ''}}">
+
+  <!-- 朗读按钮（悬浮） -->
+  <view class="read-aloud-btn" bindtap="onReadAloud" wx:if="{{elderMode}}">
+    <text class="read-icon">🔊</text>
+    <text class="read-label">朗读</text>
+  </view>
+
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-header-title">🍎 乡村采摘游</text>
+    <text class="page-header-desc">亲近自然，体验农家乐趣</text>
+  </view>
+
+  <!-- 体验介绍 -->
+  <view class="intro-section hide-in-elder">
+    <text class="intro-title">乡村旅游新体验</text>
+    <text class="intro-desc">将乡村旅游与采摘体验完美结合，为城市家庭提供回归自然的绝佳机会。</text>
+    
+    <view class="feature-list">
+      <view class="feature-item">
+        <text class="feature-icon">🌿</text>
+        <view class="feature-content">
+          <text class="feature-title">有机种植</text>
+          <text class="feature-desc">纯天然无公害，健康安全有保障</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">👶</text>
+        <view class="feature-content">
+          <text class="feature-title">亲子教育</text>
+          <text class="feature-desc">寓教于乐，让孩子了解农业知识</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">📸</text>
+        <view class="feature-content">
+          <text class="feature-title">拍照打卡</text>
+          <text class="feature-desc">田园风光，记录美好时光</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">🍽️</text>
+        <view class="feature-content">
+          <text class="feature-title">农家美食</text>
+          <text class="feature-desc">品尝地道农家菜，体验乡村风味</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 地区筛选 -->
+  <view class="filter-bar">
+    <picker mode="selector" range="{{locationOptions}}" bindchange="onLocationChange">
+      <view class="filter-item {{selectedLocation ? 'active' : ''}}">
+        <text>{{selectedLocation || '选择地区'}}</text>
+        <text class="arrow">▾</text>
+      </view>
+    </picker>
+    <view class="filter-item" bindtap="resetFilter" wx:if="{{selectedLocation}}">
+      <text class="reset-text">重置</text>
+    </view>
+  </view>
+
+  <!-- 采摘点列表 -->
+  <view class="section">
+    <view class="section-header" style="align-items: flex-start;">
+      <text class="section-title">热门采摘地推荐</text>
+      <text class="section-subtitle">精选优质采摘园，品质保证</text>
+    </view>
+
+    <view class="spot-list">
+      <view class="card spot-card" wx:for="{{filteredSpots}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="card-image-wrap">
+          <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+          <text class="season-badge badge badge-blue">{{item.season}}</text>
+        </view>
+        <view class="card-body">
+          <text class="spot-name">{{item.name}}</text>
+          <text class="card-desc">{{item.description}}</text>
+          
+          <view class="spot-meta">
+            <view class="icon-text"><text>📍 {{item.location}}</text></view>
+            <view class="icon-text"><text>📅 采摘季节：{{item.season}}</text></view>
+          </view>
+
+          <view class="tag-list">
+            <text class="tag tag-blue" wx:for="{{item.features}}" wx:key="*this" wx:for-item="feature">{{feature}}</text>
+          </view>
+
+          <view class="flex-between" style="margin-top: 20rpx;">
+            <text class="price">{{item.price}}</text>
+            <view class="btn-group">
+              <text class="btn-mini btn-outline-mini">详情</text>
+              <text class="btn-mini btn-info-mini" catchtap="onBookSpot" data-id="{{item.id}}">预订</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredSpots.length === 0}}">
+      <text style="font-size:80rpx;">🌱</text>
+      <text class="empty-text">暂无符合条件的采摘点</text>
+      <text style="font-size:26rpx;color:#bbb;margin-top:12rpx;">请尝试调整筛选条件</text>
+    </view>
+  </view>
+
+  <!-- 预订流程 -->
+  <view class="section hide-in-elder" style="background:#f5f5f5;">
+    <view class="section-header">
+      <text class="section-title">如何预订</text>
+      <text class="section-subtitle">简单三步，开启采摘之旅</text>
+    </view>
+    
+    <view class="booking-steps">
+      <view class="booking-step">
+        <view class="step-num" style="background:#1976D2;">1</view>
+        <text class="step-title">选择采摘地</text>
+        <text class="step-desc">浏览不同的采摘园，选择心仪的地点和时间</text>
+      </view>
+      <view class="booking-step">
+        <view class="step-num" style="background:#4CAF50;">2</view>
+        <text class="step-title">在线支付</text>
+        <text class="step-desc">确认人数和日期，在线完成支付预订</text>
+      </view>
+      <view class="booking-step">
+        <view class="step-num" style="background:#2196F3;">3</view>
+        <text class="step-title">现场体验</text>
+        <text class="step-desc">凭订单到现场，开始愉快的采摘体验</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 采摘小贴士 -->
+  <view class="section hide-in-elder">
+    <view class="section-header">
+      <text class="section-title">采摘小贴士</text>
+      <text class="section-subtitle">让您的采摘之旅更加愉快</text>
+    </view>
+    
+    <view class="tips-list">
+      <view class="tip-item">
+        <text class="tip-icon">⏰</text>
+        <view class="tip-content">
+          <text class="tip-title">最佳采摘时间</text>
+          <text class="tip-desc">早上9点到下午4点，避开正午高温时段</text>
+        </view>
+      </view>
+      <view class="tip-item">
+        <text class="tip-icon">👕</text>
+        <view class="tip-content">
+          <text class="tip-title">穿着建议</text>
+          <text class="tip-desc">穿着舒适的运动服和防滑鞋，戴好帽子防晒</text>
+        </view>
+      </view>
+      <view class="tip-item">
+        <text class="tip-icon">🧺</text>
+        <view class="tip-content">
+          <text class="tip-title">采摘工具</text>
+          <text class="tip-desc">园区提供采摘篮和剪刀，也可自备环保袋</text>
+        </view>
+      </view>
+      <view class="tip-item">
+        <text class="tip-icon">🧴</text>
+        <view class="tip-content">
+          <text class="tip-title">防护准备</text>
+          <text class="tip-desc">带好防晒霜和驱蚊液，注意个人防护</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="fab-btn fab-blue" bindtap="goToPublish">
+    <text class="fab-icon">+</text>
+    <text class="fab-text">发布采摘</text>
+  </view>
+
+</view>

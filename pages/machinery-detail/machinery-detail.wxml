@@ -1,0 +1,82 @@
+<!--pages/machinery-detail/machinery-detail.wxml-->
+<view class="page-detail">
+  <view wx:if="{{machine}}">
+    <!-- 图片 -->
+    <image class="detail-image" src="{{machine.image}}" mode="aspectFill"></image>
+    
+    <!-- 基本信息 -->
+    <view class="detail-info">
+      <view class="flex-between">
+        <text class="detail-name">{{machine.name}}</text>
+        <text class="badge {{machine.available ? 'badge-green' : 'badge-red'}}">{{machine.available ? '可租用' : '已租出'}}</text>
+      </view>
+      <text class="badge badge-blue" style="margin-top:12rpx;">{{machine.type}}</text>
+      <view class="price-row">
+        <text class="detail-price">¥{{machine.price}}</text>
+        <text class="price-unit">/天</text>
+      </view>
+      <text class="detail-desc">{{machine.description}}</text>
+    </view>
+
+    <!-- 详细信息 -->
+    <view class="detail-card">
+      <text class="card-title">详细信息</text>
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">📍 所在地区</text>
+          <text class="info-value">{{machine.location}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">👤 机主</text>
+          <text class="info-value">{{machine.owner}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">📞 联系电话</text>
+          <text class="info-value link" bindtap="callOwner">{{machine.phone}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">💰 租金</text>
+          <text class="info-value">¥{{machine.price}}/天</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 预订表单 -->
+    <view class="detail-card" wx:if="{{showBookForm}}">
+      <text class="card-title">预订农机</text>
+      <view class="form-group">
+        <text class="form-label">姓名 *</text>
+        <input class="form-input" placeholder="请输入姓名" bindinput="onInput" data-field="userName"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入电话号码" bindinput="onInput" data-field="phone"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">开始日期 *</text>
+        <picker mode="date" bindchange="onDateChange">
+          <view class="form-picker">
+            <text>{{formData.startDate || '请选择开始日期'}}</text>
+            <text>▾</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-group">
+        <text class="form-label">租用天数 *</text>
+        <input class="form-input" type="number" placeholder="请输入租用天数" bindinput="onInput" data-field="duration"/>
+      </view>
+      <view class="btn btn-primary btn-lg" style="margin-top:30rpx;" bindtap="submitBooking">确认预订</view>
+    </view>
+
+    <!-- 底部操作 -->
+    <view class="bottom-bar">
+      <view class="bottom-btn-left" bindtap="callOwner">
+        <text class="bottom-icon">📞</text>
+        <text class="bottom-label">联系机主</text>
+      </view>
+      <view class="bottom-btn-right {{machine.available ? '' : 'disabled'}}" bindtap="toggleBookForm">
+        <text>{{showBookForm ? '收起表单' : (machine.available ? '立即租用' : '已租出')}}</text>
+      </view>
+    </view>
+  </view>
+</view>

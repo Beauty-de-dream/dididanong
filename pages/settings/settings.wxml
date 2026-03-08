@@ -1,0 +1,86 @@
+<!--pages/settings/settings.wxml - 设置页面-->
+<view class="page-settings {{elderMode ? 'elder-mode' : ''}}">
+
+  <!-- 朗读按钮（悬浮） -->
+  <view class="read-aloud-fab" bindtap="onReadAloud" wx:if="{{elderMode}}">
+    <text class="read-aloud-icon">🔊</text>
+    <text class="read-aloud-text">朗读</text>
+  </view>
+
+  <!-- 老人模式设置卡片 -->
+  <view class="settings-card elder-card">
+    <view class="card-header-banner">
+      <text class="banner-icon">👴</text>
+      <view class="banner-text">
+        <text class="banner-title">老人模式</text>
+        <text class="banner-desc">一键开启，大字体、简洁界面、语音朗读</text>
+      </view>
+    </view>
+    <view class="elder-toggle-row">
+      <view class="toggle-info">
+        <text class="toggle-label">{{elderMode ? '老人模式已开启' : '老人模式已关闭'}}</text>
+        <text class="toggle-hint">{{elderMode ? '界面已简化，字体已放大' : '开启后将简化页面，放大字体'}}</text>
+      </view>
+      <switch checked="{{elderMode}}" bindchange="onElderModeChange" color="#4CAF50" class="elder-switch"/>
+    </view>
+    <!-- 老人模式功能说明 -->
+    <view class="elder-features">
+      <view class="feature-row">
+        <text class="feature-check {{elderMode ? 'active' : ''}}">{{elderMode ? '✅' : '⬜'}}</text>
+        <text class="feature-text">大字体显示，看得更清楚</text>
+      </view>
+      <view class="feature-row">
+        <text class="feature-check {{elderMode ? 'active' : ''}}">{{elderMode ? '✅' : '⬜'}}</text>
+        <text class="feature-text">精简页面，只保留核心功能</text>
+      </view>
+      <view class="feature-row">
+        <text class="feature-check {{elderMode ? 'active' : ''}}">{{elderMode ? '✅' : '⬜'}}</text>
+        <text class="feature-text">一键朗读，听懂页面内容</text>
+      </view>
+      <view class="feature-row">
+        <text class="feature-check {{elderMode ? 'active' : ''}}">{{elderMode ? '✅' : '⬜'}}</text>
+        <text class="feature-text">高对比度，操作更方便</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 其他设置 -->
+  <view class="settings-card" wx:if="{{!elderMode}}">
+    <view class="settings-group-title">其他设置</view>
+    <view class="settings-item" bindtap="onAbout">
+      <view class="settings-item-left">
+        <text class="settings-icon">ℹ️</text>
+        <text class="settings-label">关于应用</text>
+      </view>
+      <text class="settings-arrow">></text>
+    </view>
+    <view class="settings-item" bindtap="onClearCache">
+      <view class="settings-item-left">
+        <text class="settings-icon">🗑️</text>
+        <text class="settings-label">清除缓存</text>
+      </view>
+      <text class="settings-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 老人模式下的简化设置 -->
+  <view class="settings-card" wx:if="{{elderMode}}">
+    <view class="elder-menu-item" bindtap="onAbout">
+      <text class="elder-menu-icon">ℹ️</text>
+      <text class="elder-menu-text">关于应用</text>
+      <text class="elder-menu-arrow">></text>
+    </view>
+    <view class="elder-menu-item" bindtap="onClearCache">
+      <text class="elder-menu-icon">🗑️</text>
+      <text class="elder-menu-text">清除缓存</text>
+      <text class="elder-menu-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text class="version-text">滴滴打农 v{{version}}</text>
+    <text class="version-copyright">© 2024 滴滴打农平台</text>
+  </view>
+
+</view>

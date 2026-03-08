@@ -1,0 +1,154 @@
+<!--pages/about/about.wxml - 关于我们-->
+<view class="page-about">
+
+  <!-- 头部 -->
+  <view class="page-header">
+    <text class="page-header-title">ℹ️ 关于我们</text>
+    <text class="page-header-desc">连接希望的田野，让每一份耕耘都有价值</text>
+  </view>
+
+  <!-- 平台简介 -->
+  <view class="section">
+    <text class="section-title">平台简介</text>
+    <text class="about-text">滴滴打农平台是一个专注于农业服务的综合性数字化平台，致力于通过科技创新解决农业发展中的实际问题。</text>
+    <text class="about-text">我们以"连接希望的田野，让每一份耕耘都有价值"为使命，通过农机共享、助农务工、乡村采摘游等多元化服务，为农业现代化和乡村振兴贡献力量。</text>
+
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-number">1000+</text>
+        <text class="stat-label">注册农机</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-number">5000+</text>
+        <text class="stat-label">活跃用户</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-number">300+</text>
+        <text class="stat-label">合作园区</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-number">50+</text>
+        <text class="stat-label">服务城市</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我们的故事 -->
+  <view class="section section-gray">
+    <view class="section-header">
+      <text class="section-title">我们的故事</text>
+      <text class="section-subtitle">从一个想法到改变农业的力量</text>
+    </view>
+
+    <view class="timeline">
+      <view class="timeline-item">
+        <view class="timeline-dot" style="background:#1976D2;"></view>
+        <view class="timeline-content">
+          <text class="timeline-year">2022年 - 初心萌芽</text>
+          <text class="timeline-desc">看到农村老人面临就业困难，农机闲置浪费，城市家庭缺乏农业体验的现状，我们决定用科技的力量连接这些需求。</text>
+        </view>
+      </view>
+      <view class="timeline-item">
+        <view class="timeline-dot" style="background:#4CAF50;"></view>
+        <view class="timeline-content">
+          <text class="timeline-year">2023年 - 平台启动</text>
+          <text class="timeline-desc">经过一年的调研和开发，滴滴打农平台正式上线。首批合作的10个村镇，200台农机，为500多位老人提供了就业机会。</text>
+        </view>
+      </view>
+      <view class="timeline-item">
+        <view class="timeline-dot" style="background:#FF9800;"></view>
+        <view class="timeline-content">
+          <text class="timeline-year">2024年 - 快速发展</text>
+          <text class="timeline-desc">平台服务覆盖50多个城市，注册用户突破5000人，与300多个采摘园建立合作关系，年服务游客超过10万人次。</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心价值观 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">核心价值观</text>
+      <text class="section-subtitle">指导我们前行的价值理念</text>
+    </view>
+
+    <view class="value-grid">
+      <view class="value-item">
+        <text class="value-icon">❤️</text>
+        <text class="value-name">关爱</text>
+        <text class="value-desc">关爱农村老年人，提供有尊严的就业机会</text>
+      </view>
+      <view class="value-item">
+        <text class="value-icon">💡</text>
+        <text class="value-name">创新</text>
+        <text class="value-desc">运用科技创新，打破传统农业服务模式</text>
+      </view>
+      <view class="value-item">
+        <text class="value-icon">🤝</text>
+        <text class="value-name">共享</text>
+        <text class="value-desc">倡导共享经济，让资源发挥最大价值</text>
+      </view>
+      <view class="value-item">
+        <text class="value-icon">🌱</text>
+        <text class="value-name">可持续</text>
+        <text class="value-desc">致力于农业可持续发展，保护环境</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心团队 -->
+  <view class="section section-gray">
+    <view class="section-header">
+      <text class="section-title">核心团队</text>
+      <text class="section-subtitle">专业团队，专注服务</text>
+    </view>
+
+    <view class="team-list">
+      <view class="team-card" wx:for="{{team}}" wx:key="name">
+        <view class="team-avatar-wrap">
+          <text class="team-avatar-text">{{item.name[0]}}</text>
+        </view>
+        <text class="team-name">{{item.name}}</text>
+        <text class="team-role">{{item.role}}</text>
+        <text class="team-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">联系方式</text>
+    </view>
+
+    <view class="contact-list">
+      <view class="contact-item" bindtap="callUs">
+        <text class="contact-icon">📞</text>
+        <view class="contact-content">
+          <text class="contact-label">客服电话</text>
+          <text class="contact-value">0571-10000</text>
+        </view>
+      </view>
+      <view class="contact-item" bindtap="copyEmail">
+        <text class="contact-icon">📧</text>
+        <view class="contact-content">
+          <text class="contact-label">电子邮箱</text>
+          <text class="contact-value">pigzhu@dididanong.com</text>
+        </view>
+      </view>
+      <view class="contact-item">
+        <text class="contact-icon">📍</text>
+        <view class="contact-content">
+          <text class="contact-label">公司地址</text>
+          <text class="contact-value">湖南省长沙市麓山南路湖南大学</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部 -->
+  <view class="footer">
+    <text class="footer-text">© 2024 滴滴打农平台. 保留所有权利.</text>
+  </view>
+
+</view>
