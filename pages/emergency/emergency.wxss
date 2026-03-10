@@ -1,0 +1,333 @@
+/* pages/emergency/emergency.wxss */
+
+.page-emergency {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部横幅 */
+.emergency-hero {
+  background: linear-gradient(135deg, #FF1744 0%, #D50000 100%);
+  padding: 60rpx 30rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.hero-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12rpx;
+}
+
+.hero-desc {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* SOS 拨打区域 */
+.sos-section {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.sos-call-btn {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  border-left: 8rpx solid #FF1744;
+  transition: transform 0.2s ease;
+}
+
+.sos-call-btn:active {
+  transform: scale(0.97);
+}
+
+.sos-call-btn.small {
+  flex: 1;
+  border-left: 8rpx solid #FF9800;
+}
+
+.sos-call-btn.platform {
+  border-left: 8rpx solid #4CAF50;
+}
+
+.sos-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.sos-call-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.sos-call-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sos-call-title {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 4rpx;
+}
+
+.sos-call-number {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #D50000;
+}
+
+.sos-call-btn.small .sos-call-number {
+  color: #E65100;
+}
+
+.sos-call-btn.platform .sos-call-number {
+  color: #2E7D32;
+}
+
+/* 卡片 */
+.section-card {
+  background: #fff;
+  margin: 20rpx 24rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-action {
+  font-size: 26rpx;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+/* 联系人列表 */
+.contact-list {
+  padding: 16rpx 24rpx;
+}
+
+.empty-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.empty-tip {
+  font-size: 24rpx;
+  color: #ccc;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.contact-relation {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 4rpx;
+}
+
+.contact-phone {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.contact-actions {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.contact-call-btn {
+  width: 72rpx;
+  height: 72rpx;
+  background: #E8F5E9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+}
+
+.contact-del-btn {
+  width: 72rpx;
+  height: 72rpx;
+  background: #FFEBEE;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #F44336;
+}
+
+/* 添加联系人弹窗 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  width: 80%;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+}
+
+.modal-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  text-align: center;
+  margin-bottom: 36rpx;
+}
+
+.form-group {
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  border: 2rpx solid transparent;
+}
+
+.form-input:focus {
+  border-color: #4CAF50;
+  background: #fff;
+}
+
+.form-picker {
+  width: 100%;
+  height: 80rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.placeholder {
+  color: #999;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 32rpx;
+}
+
+.modal-btn {
+  flex: 1;
+  height: 84rpx;
+  border-radius: 42rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.modal-btn.cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.modal-btn.confirm {
+  background: #4CAF50;
+  color: #fff;
+}
+
+/* 安全提示 */
+.safety-tips {
+  padding: 16rpx 24rpx 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.safety-item {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}

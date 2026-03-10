@@ -1,0 +1,142 @@
+<!--pages/insurance/insurance.wxml - 保险服务-->
+<view class="page-insurance">
+
+  <!-- 顶部横幅 -->
+  <view class="insurance-hero">
+    <text class="hero-icon">🛡️</text>
+    <text class="hero-title">我的保障</text>
+    <text class="hero-desc">为您的务工和设备提供全方位保险保障</text>
+  </view>
+
+  <!-- 意外险 -->
+  <view class="section-card">
+    <view class="card-header-bar">
+      <text class="card-tag tag-green">推荐</text>
+      <text class="card-main-title">🏥 人身意外险</text>
+    </view>
+    <view class="card-body">
+      <text class="card-desc">专为农业务工人员定制，覆盖工作期间的意外伤害、医疗费用等保障</text>
+      <view class="plan-list">
+        <view class="plan-card {{selectedAccidentPlan === 'basic' ? 'selected' : ''}}" bindtap="selectAccidentPlan" data-plan="basic">
+          <text class="plan-tag">基础版</text>
+          <text class="plan-amount">¥3/天</text>
+          <view class="plan-details">
+            <text class="plan-detail-item">意外身故/伤残：10万元</text>
+            <text class="plan-detail-item">意外医疗：1万元</text>
+            <text class="plan-detail-item">住院津贴：50元/天</text>
+          </view>
+        </view>
+        <view class="plan-card {{selectedAccidentPlan === 'standard' ? 'selected' : ''}}" bindtap="selectAccidentPlan" data-plan="standard">
+          <text class="plan-tag tag-hot">热门</text>
+          <text class="plan-amount">¥8/天</text>
+          <view class="plan-details">
+            <text class="plan-detail-item">意外身故/伤残：30万元</text>
+            <text class="plan-detail-item">意外医疗：5万元</text>
+            <text class="plan-detail-item">住院津贴：100元/天</text>
+            <text class="plan-detail-item">误工补贴：80元/天</text>
+          </view>
+        </view>
+        <view class="plan-card {{selectedAccidentPlan === 'premium' ? 'selected' : ''}}" bindtap="selectAccidentPlan" data-plan="premium">
+          <text class="plan-tag tag-premium">尊享版</text>
+          <text class="plan-amount">¥15/天</text>
+          <view class="plan-details">
+            <text class="plan-detail-item">意外身故/伤残：50万元</text>
+            <text class="plan-detail-item">意外医疗：10万元</text>
+            <text class="plan-detail-item">住院津贴：200元/天</text>
+            <text class="plan-detail-item">误工补贴：150元/天</text>
+            <text class="plan-detail-item">家属慰问金：5000元</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 设备损坏险 -->
+  <view class="section-card">
+    <view class="card-header-bar">
+      <text class="card-tag tag-blue">保障</text>
+      <text class="card-main-title">🚜 设备损坏险</text>
+    </view>
+    <view class="card-body">
+      <text class="card-desc">为租赁的农机设备提供损坏、故障保障，让机主和租户都安心</text>
+      <view class="plan-list">
+        <view class="plan-card {{selectedEquipPlan === 'basic' ? 'selected' : ''}}" bindtap="selectEquipPlan" data-plan="basic">
+          <text class="plan-tag">基础版</text>
+          <text class="plan-amount">¥5/天</text>
+          <view class="plan-details">
+            <text class="plan-detail-item">设备损坏赔付：5000元</text>
+            <text class="plan-detail-item">第三方责任：1万元</text>
+          </view>
+        </view>
+        <view class="plan-card {{selectedEquipPlan === 'standard' ? 'selected' : ''}}" bindtap="selectEquipPlan" data-plan="standard">
+          <text class="plan-tag tag-hot">热门</text>
+          <text class="plan-amount">¥10/天</text>
+          <view class="plan-details">
+            <text class="plan-detail-item">设备损坏赔付：2万元</text>
+            <text class="plan-detail-item">第三方责任：5万元</text>
+            <text class="plan-detail-item">停工损失：200元/天</text>
+          </view>
+        </view>
+        <view class="plan-card {{selectedEquipPlan === 'premium' ? 'selected' : ''}}" bindtap="selectEquipPlan" data-plan="premium">
+          <text class="plan-tag tag-premium">尊享版</text>
+          <text class="plan-amount">¥20/天</text>
+          <view class="plan-details">
+            <text class="plan-detail-item">设备损坏赔付：5万元</text>
+            <text class="plan-detail-item">第三方责任：10万元</text>
+            <text class="plan-detail-item">停工损失：500元/天</text>
+            <text class="plan-detail-item">紧急救援服务</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的保单 -->
+  <view class="section-card">
+    <view class="card-header-bar">
+      <text class="card-main-title">📋 我的保单</text>
+    </view>
+    <view class="card-body">
+      <view wx:if="{{policies.length === 0}}" class="empty-state">
+        <text class="empty-icon">📄</text>
+        <text class="empty-text">暂无保单记录</text>
+        <text class="empty-tip">购买保险后，保单将显示在这里</text>
+      </view>
+      <view wx:for="{{policies}}" wx:key="id" class="policy-item">
+        <view class="policy-header">
+          <text class="policy-type">{{item.typeName}}</text>
+          <text class="policy-status {{item.status === 'active' ? 'status-active' : 'status-expired'}}">{{item.status === 'active' ? '生效中' : '已过期'}}</text>
+        </view>
+        <text class="policy-plan">{{item.planName}}</text>
+        <text class="policy-date">{{item.startDate}} ~ {{item.endDate}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 常见问题 -->
+  <view class="section-card">
+    <view class="card-header-bar">
+      <text class="card-main-title">❓ 常见问题</text>
+    </view>
+    <view class="card-body">
+      <view class="faq-item" wx:for="{{faqs}}" wx:key="q" bindtap="toggleFaq" data-index="{{index}}">
+        <view class="faq-question">
+          <text class="faq-q-text">{{item.q}}</text>
+          <text class="faq-arrow {{item.open ? 'open' : ''}}">▾</text>
+        </view>
+        <view class="faq-answer" wx:if="{{item.open}}">
+          <text>{{item.a}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 客服 -->
+  <view class="service-bar">
+    <text class="service-text">如有疑问请联系保险客服</text>
+    <view class="service-btn" bindtap="callService">
+      <text>📞 拨打客服热线</text>
+    </view>
+  </view>
+
+</view>

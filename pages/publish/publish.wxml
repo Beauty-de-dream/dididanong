@@ -52,6 +52,36 @@
         <text class="form-label">农机描述</text>
         <textarea class="form-textarea" placeholder="请描述农机的性能、特点等信息" value="{{machineryForm.description}}" bindinput="onMachineryInput" data-field="description"/>
       </view>
+
+      <!-- 设备损坏保险 -->
+      <view class="insurance-option">
+        <view class="insurance-option-header">
+          <text class="insurance-option-icon">🛡️</text>
+          <text class="insurance-option-title">设备损坏保险</text>
+        </view>
+        <view class="insurance-option-desc">为您的农机添加保险保障，租赁期间设备损坏可获得赔偿</view>
+        <view class="insurance-plans">
+          <view class="insurance-plan {{machineryForm.insurancePlan === 'basic' ? 'plan-active' : ''}}" bindtap="selectInsurancePlan" data-plan="basic">
+            <text class="plan-name">基础版</text>
+            <text class="plan-price">¥5/天</text>
+            <text class="plan-detail">赔付上限5000元</text>
+          </view>
+          <view class="insurance-plan {{machineryForm.insurancePlan === 'standard' ? 'plan-active' : ''}}" bindtap="selectInsurancePlan" data-plan="standard">
+            <text class="plan-name">标准版</text>
+            <text class="plan-price">¥10/天</text>
+            <text class="plan-detail">赔付上限2万元</text>
+          </view>
+          <view class="insurance-plan {{machineryForm.insurancePlan === 'premium' ? 'plan-active' : ''}}" bindtap="selectInsurancePlan" data-plan="premium">
+            <text class="plan-name">尊享版</text>
+            <text class="plan-price">¥20/天</text>
+            <text class="plan-detail">赔付上限5万元</text>
+          </view>
+        </view>
+        <view class="insurance-plan-none {{!machineryForm.insurancePlan ? 'plan-none-active' : ''}}" bindtap="selectInsurancePlan" data-plan="">
+          <text>不添加保险</text>
+        </view>
+      </view>
+
       <view class="btn btn-primary btn-lg" bindtap="submitMachinery">发布农机</view>
     </view>
 

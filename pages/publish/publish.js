@@ -19,7 +19,8 @@ Page({
       location: '',
       owner: '',
       phone: '',
-      description: ''
+      description: '',
+      insurancePlan: ''
     },
     machineryTypes: ['拖拉机', '收割机', '插秧机', '播种机', '喷洒机', '其他'],
     selectedMachineryType: '',
@@ -95,6 +96,11 @@ Page({
     })
   },
 
+  selectInsurancePlan(e) {
+    const plan = e.currentTarget.dataset.plan
+    this.setData({ 'machineryForm.insurancePlan': plan })
+  },
+
   submitMachinery() {
     const { name, type, price, location, owner, phone, description } = this.data.machineryForm
     if (!name || !type || !price || !location || !owner || !phone) {
@@ -120,7 +126,7 @@ Page({
 
           util.showSuccess('发布成功')
           this.setData({
-            machineryForm: { name: '', type: '', price: '', location: '', owner: '', phone: '', description: '' },
+            machineryForm: { name: '', type: '', price: '', location: '', owner: '', phone: '', description: '', insurancePlan: '' },
             selectedMachineryType: ''
           })
           this.loadMyPublish()

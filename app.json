@@ -12,7 +12,11 @@
     "pages/partnership/partnership",
     "pages/orders/orders",
     "pages/publish/publish",
-    "pages/settings/settings"
+    "pages/settings/settings",
+    "pages/insurance/insurance",
+    "pages/dispute/dispute",
+    "pages/emergency/emergency",
+    "pages/contract/contract"
   ],
   "window": {
     "backgroundTextStyle": "light",

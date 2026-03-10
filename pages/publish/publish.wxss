@@ -255,3 +255,102 @@
   background: #2196F3;
   color: #fff;
 }
+
+/* 设备损坏保险选项 */
+.insurance-option {
+  background: #F1F8E9;
+  border: 2rpx solid #C5E1A5;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 30rpx;
+}
+
+.insurance-option-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.insurance-option-icon {
+  font-size: 36rpx;
+  margin-right: 12rpx;
+}
+
+.insurance-option-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #33691E;
+}
+
+.insurance-option-desc {
+  font-size: 24rpx;
+  color: #689F38;
+  margin-bottom: 20rpx;
+  display: block;
+  line-height: 1.6;
+}
+
+.insurance-plans {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.insurance-plan {
+  flex: 1;
+  background: #fff;
+  border: 2rpx solid #ddd;
+  border-radius: 12rpx;
+  padding: 20rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.insurance-plan.plan-active {
+  border-color: #4CAF50;
+  background: #E8F5E9;
+  box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.2);
+}
+
+.plan-name {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.plan-active .plan-name {
+  color: #2E7D32;
+}
+
+.plan-price {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 6rpx;
+}
+
+.plan-detail {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.plan-active .plan-detail {
+  color: #558B2F;
+}
+
+.insurance-plan-none {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  padding: 12rpx 0;
+  border-radius: 8rpx;
+  transition: all 0.2s ease;
+}
+
+.insurance-plan-none.plan-none-active {
+  color: #F44336;
+  font-weight: bold;
+}

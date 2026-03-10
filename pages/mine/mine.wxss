@@ -358,6 +358,105 @@
   color: #999;
 }
 
+/* SOS 紧急求助按钮 */
+.sos-btn {
+  margin: 20rpx 24rpx;
+  background: linear-gradient(135deg, #FF1744 0%, #D50000 100%);
+  border-radius: var(--radius-lg);
+  padding: 28rpx 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(213, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.sos-btn:active {
+  transform: scale(0.96);
+}
+
+.sos-icon {
+  font-size: 44rpx;
+  margin-right: 16rpx;
+}
+
+.sos-text {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 4rpx;
+}
+
+/* 保险服务卡片 */
+.insurance-card {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%) !important;
+  border: 2rpx solid #A5D6A7;
+}
+
+.insurance-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx;
+}
+
+.insurance-card-left {
+  display: flex;
+  align-items: center;
+}
+
+.insurance-icon-wrap {
+  width: 88rpx;
+  height: 88rpx;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.2);
+}
+
+.insurance-icon {
+  font-size: 44rpx;
+}
+
+.insurance-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.insurance-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  margin-bottom: 6rpx;
+}
+
+.insurance-desc {
+  font-size: 24rpx;
+  color: #558B2F;
+}
+
+.insurance-arrow {
+  font-size: 32rpx;
+  color: #4CAF50;
+}
+
+.insurance-tags {
+  display: flex;
+  padding: 0 24rpx 20rpx;
+  gap: 16rpx;
+}
+
+.insurance-tag {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  background: rgba(255, 255, 255, 0.7);
+  color: #2E7D32;
+  border-radius: 16rpx;
+}
+
 /* 底部信息 */
 .footer {
   display: flex;

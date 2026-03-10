@@ -1,0 +1,103 @@
+<!--pages/dispute/dispute.wxml - 纠纷调解-->
+<view class="page-dispute">
+
+  <!-- 顶部横幅 -->
+  <view class="dispute-hero">
+    <text class="hero-icon">⚖️</text>
+    <text class="hero-title">劳务纠纷调解</text>
+    <text class="hero-desc">平台提供免费、公正的劳务纠纷调解服务</text>
+  </view>
+
+  <!-- 调解流程 -->
+  <view class="section-card">
+    <view class="card-title">📋 调解流程</view>
+    <view class="steps">
+      <view class="step-item">
+        <view class="step-num">1</view>
+        <view class="step-content">
+          <text class="step-title">提交申请</text>
+          <text class="step-desc">填写纠纷详情并提交调解申请</text>
+        </view>
+      </view>
+      <view class="step-line"></view>
+      <view class="step-item">
+        <view class="step-num">2</view>
+        <view class="step-content">
+          <text class="step-title">平台受理</text>
+          <text class="step-desc">平台审核后指派调解员（1-2个工作日）</text>
+        </view>
+      </view>
+      <view class="step-line"></view>
+      <view class="step-item">
+        <view class="step-num">3</view>
+        <view class="step-content">
+          <text class="step-title">双方沟通</text>
+          <text class="step-desc">调解员分别联系双方了解情况</text>
+        </view>
+      </view>
+      <view class="step-line"></view>
+      <view class="step-item">
+        <view class="step-num">4</view>
+        <view class="step-content">
+          <text class="step-title">达成协议</text>
+          <text class="step-desc">协助双方达成调解协议</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 调解申请表单 -->
+  <view class="section-card">
+    <view class="card-title">📝 提交调解申请</view>
+    <view class="form-area">
+      <view class="form-group">
+        <text class="form-label">您的姓名 *</text>
+        <input class="form-input" placeholder="请输入姓名" bindinput="onInput" data-field="name"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入联系电话" bindinput="onInput" data-field="phone"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">纠纷类型 *</text>
+        <picker mode="selector" range="{{disputeTypes}}" bindchange="onTypeChange">
+          <view class="form-picker">
+            <text class="{{formData.type ? '' : 'placeholder'}}">{{formData.type || '请选择纠纷类型'}}</text>
+            <text>▾</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-group">
+        <text class="form-label">对方姓名/联系方式</text>
+        <input class="form-input" placeholder="如有，请提供对方信息" bindinput="onInput" data-field="otherParty"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">纠纷描述 *</text>
+        <textarea class="form-textarea" placeholder="请详细描述纠纷的经过、诉求等信息，以便调解员了解情况" bindinput="onInput" data-field="description"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">期望结果</text>
+        <textarea class="form-textarea small" placeholder="请描述您期望的调解结果" bindinput="onInput" data-field="expectation"/>
+      </view>
+      <view class="submit-btn" bindtap="submitDispute">提交调解申请</view>
+    </view>
+  </view>
+
+  <!-- 温馨提示 -->
+  <view class="section-card">
+    <view class="card-title">💡 温馨提示</view>
+    <view class="tips-list">
+      <text class="tip-item">• 调解服务完全免费，请放心使用</text>
+      <text class="tip-item">• 平台调解员会在1-2个工作日内联系您</text>
+      <text class="tip-item">• 请保留好相关证据（合同、转账记录、聊天记录等）</text>
+      <text class="tip-item">• 如遇紧急情况，请直接拨打平台客服热线</text>
+    </view>
+  </view>
+
+  <!-- 客服热线 -->
+  <view class="hotline-bar" bindtap="callHotline">
+    <text class="hotline-icon">📞</text>
+    <text class="hotline-text">客服热线：0571-10000</text>
+  </view>
+
+</view>

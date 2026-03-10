@@ -1,0 +1,217 @@
+<!--pages/contract/contract.wxml - 合约确认页面-->
+<view class="page-contract">
+
+  <!-- 顶部标题 -->
+  <view class="contract-hero">
+    <text class="hero-icon">📋</text>
+    <text class="hero-title">劳务合约确认</text>
+    <text class="hero-desc">请仔细阅读以下合约条款，勾选保险选项后确认签署</text>
+  </view>
+
+  <!-- 合约基本信息 -->
+  <view class="section-card">
+    <view class="card-title">📄 合约基本信息</view>
+    <view class="contract-info">
+      <view class="info-row">
+        <text class="info-label">工作名称</text>
+        <text class="info-value">{{contractData.itemName}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">工作地点</text>
+        <text class="info-value">{{contractData.location}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">薪资待遇</text>
+        <text class="info-value highlight">{{contractData.salary}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">工作时长</text>
+        <text class="info-value">{{contractData.jobDuration}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">务工人员</text>
+        <text class="info-value">{{contractData.userName}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">联系电话</text>
+        <text class="info-value">{{contractData.userPhone}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 合约条款 -->
+  <view class="section-card">
+    <view class="card-title">📜 合约条款</view>
+    <view class="terms-content">
+      <text class="terms-text">一、甲方（雇主）应按照约定按时足额支付劳务报酬，不得无故克扣或拖欠。</text>
+      <text class="terms-text">二、乙方（务工人员）应按照甲方要求，认真完成工作任务，遵守安全操作规范。</text>
+      <text class="terms-text">三、工作期间，甲方应为乙方提供必要的劳动保护和安全的工作环境。</text>
+      <text class="terms-text">四、如发生劳务纠纷，双方可通过平台调解服务协商解决。</text>
+      <text class="terms-text">五、双方确认以下保险保障条款，保险费用按双方勾选方案执行。</text>
+    </view>
+  </view>
+
+  <!-- 意外险选项 -->
+  <view class="section-card insurance-section">
+    <view class="card-title-row">
+      <text class="card-title">🏥 人身意外险</text>
+      <text class="required-tag">必选</text>
+    </view>
+    <text class="insurance-info">为务工人员提供工作期间的人身意外保障，双方须共同确认</text>
+    <view class="insurance-plans">
+      <view class="plan-option {{accidentPlan === 'basic' ? 'plan-selected' : ''}}" bindtap="selectAccidentPlan" data-plan="basic">
+        <view class="plan-radio {{accidentPlan === 'basic' ? 'checked' : ''}}">
+          <text wx:if="{{accidentPlan === 'basic'}}">✓</text>
+        </view>
+        <view class="plan-info">
+          <view class="plan-header">
+            <text class="plan-name">基础版</text>
+            <text class="plan-price">¥3/天</text>
+          </view>
+          <text class="plan-detail">意外身故/伤残10万 + 医疗1万 + 住院津贴50元/天</text>
+        </view>
+      </view>
+      <view class="plan-option {{accidentPlan === 'standard' ? 'plan-selected' : ''}}" bindtap="selectAccidentPlan" data-plan="standard">
+        <view class="plan-radio {{accidentPlan === 'standard' ? 'checked' : ''}}">
+          <text wx:if="{{accidentPlan === 'standard'}}">✓</text>
+        </view>
+        <view class="plan-info">
+          <view class="plan-header">
+            <text class="plan-name">标准版</text>
+            <text class="plan-price">¥8/天</text>
+            <text class="plan-recommend">推荐</text>
+          </view>
+          <text class="plan-detail">意外身故/伤残30万 + 医疗5万 + 住院津贴100元/天 + 误工补贴80元/天</text>
+        </view>
+      </view>
+      <view class="plan-option {{accidentPlan === 'premium' ? 'plan-selected' : ''}}" bindtap="selectAccidentPlan" data-plan="premium">
+        <view class="plan-radio {{accidentPlan === 'premium' ? 'checked' : ''}}">
+          <text wx:if="{{accidentPlan === 'premium'}}">✓</text>
+        </view>
+        <view class="plan-info">
+          <view class="plan-header">
+            <text class="plan-name">尊享版</text>
+            <text class="plan-price">¥15/天</text>
+          </view>
+          <text class="plan-detail">意外身故/伤残50万 + 医疗10万 + 住院200元/天 + 误工150元/天 + 慰问金5000元</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 设备损坏险选项 -->
+  <view class="section-card insurance-section">
+    <view class="card-title-row">
+      <text class="card-title">🚜 设备损坏险</text>
+      <text class="optional-tag">可选</text>
+    </view>
+    <text class="insurance-info">如工作涉及农机设备操作，建议双方购买设备损坏险</text>
+    <view class="insurance-plans">
+      <view class="plan-option {{equipPlan === 'none' ? 'plan-selected' : ''}}" bindtap="selectEquipPlan" data-plan="none">
+        <view class="plan-radio {{equipPlan === 'none' ? 'checked' : ''}}">
+          <text wx:if="{{equipPlan === 'none'}}">✓</text>
+        </view>
+        <view class="plan-info">
+          <text class="plan-name">不购买设备险</text>
+        </view>
+      </view>
+      <view class="plan-option {{equipPlan === 'basic' ? 'plan-selected' : ''}}" bindtap="selectEquipPlan" data-plan="basic">
+        <view class="plan-radio {{equipPlan === 'basic' ? 'checked' : ''}}">
+          <text wx:if="{{equipPlan === 'basic'}}">✓</text>
+        </view>
+        <view class="plan-info">
+          <view class="plan-header">
+            <text class="plan-name">基础版</text>
+            <text class="plan-price">¥5/天</text>
+          </view>
+          <text class="plan-detail">设备损坏赔付上限5000元 + 第三方责任1万元</text>
+        </view>
+      </view>
+      <view class="plan-option {{equipPlan === 'standard' ? 'plan-selected' : ''}}" bindtap="selectEquipPlan" data-plan="standard">
+        <view class="plan-radio {{equipPlan === 'standard' ? 'checked' : ''}}">
+          <text wx:if="{{equipPlan === 'standard'}}">✓</text>
+        </view>
+        <view class="plan-info">
+          <view class="plan-header">
+            <text class="plan-name">标准版</text>
+            <text class="plan-price">¥10/天</text>
+          </view>
+          <text class="plan-detail">设备损坏赔付上限2万元 + 第三方责任5万元 + 停工损失200元/天</text>
+        </view>
+      </view>
+      <view class="plan-option {{equipPlan === 'premium' ? 'plan-selected' : ''}}" bindtap="selectEquipPlan" data-plan="premium">
+        <view class="plan-radio {{equipPlan === 'premium' ? 'checked' : ''}}">
+          <text wx:if="{{equipPlan === 'premium'}}">✓</text>
+        </view>
+        <view class="plan-info">
+          <view class="plan-header">
+            <text class="plan-name">尊享版</text>
+            <text class="plan-price">¥20/天</text>
+          </view>
+          <text class="plan-detail">设备损坏赔付上限5万元 + 第三方责任10万元 + 停工损失500元/天 + 紧急救援</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 费用预览 -->
+  <view class="section-card cost-section">
+    <view class="card-title">💰 保险费用预览</view>
+    <view class="cost-rows">
+      <view class="cost-row">
+        <text class="cost-label">人身意外险</text>
+        <text class="cost-value">{{accidentCostText}}</text>
+      </view>
+      <view class="cost-row">
+        <text class="cost-label">设备损坏险</text>
+        <text class="cost-value">{{equipCostText}}</text>
+      </view>
+      <view class="cost-row total">
+        <text class="cost-label">保险合计</text>
+        <text class="cost-value">{{totalCostText}}/天</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 双方确认区域 -->
+  <view class="section-card confirm-section">
+    <view class="card-title">✅ 双方确认</view>
+
+    <!-- 甲方（雇主）确认 -->
+    <view class="confirm-party">
+      <view class="party-header">
+        <text class="party-icon">👔</text>
+        <text class="party-label">甲方（雇主）确认</text>
+      </view>
+      <view class="checkbox-row" bindtap="toggleEmployerAgree">
+        <view class="checkbox {{employerAgreed ? 'checked' : ''}}">
+          <text wx:if="{{employerAgreed}}">✓</text>
+        </view>
+        <text class="checkbox-text">我已阅读并同意以上合约条款及保险方案，同意履行合约义务。</text>
+      </view>
+    </view>
+
+    <!-- 乙方（务工人员）确认 -->
+    <view class="confirm-party">
+      <view class="party-header">
+        <text class="party-icon">👷</text>
+        <text class="party-label">乙方（务工人员）确认</text>
+      </view>
+      <view class="checkbox-row" bindtap="toggleWorkerAgree">
+        <view class="checkbox {{workerAgreed ? 'checked' : ''}}">
+          <text wx:if="{{workerAgreed}}">✓</text>
+        </view>
+        <text class="checkbox-text">我已阅读并同意以上合约条款及保险方案，同意履行合约义务。</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-actions">
+    <view class="action-btn cancel" bindtap="onCancel">取消</view>
+    <view class="action-btn confirm {{canSubmit ? '' : 'disabled'}}" bindtap="onConfirm">
+      <text>确认签署合约</text>
+    </view>
+  </view>
+
+</view>

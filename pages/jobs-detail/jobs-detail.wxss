@@ -100,6 +100,51 @@
   margin-top: 20rpx;
 }
 
+/* 纠纷调解入口 */
+.dispute-banner {
+  margin: 20rpx 24rpx;
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+  border: 2rpx solid #FFD54F;
+  border-radius: var(--radius-md);
+  padding: 28rpx 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dispute-banner-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.dispute-icon {
+  font-size: 44rpx;
+  margin-right: 16rpx;
+}
+
+.dispute-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dispute-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #E65100;
+  margin-bottom: 4rpx;
+}
+
+.dispute-desc {
+  font-size: 22rpx;
+  color: #F57C00;
+}
+
+.dispute-arrow {
+  font-size: 28rpx;
+  color: #FF9800;
+}
+
 .bottom-bar {
   position: fixed;
   bottom: 0;

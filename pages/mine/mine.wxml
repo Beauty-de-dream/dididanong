@@ -84,6 +84,33 @@
     </view>
   </view>
 
+  <!-- SOS 紧急求助按钮 -->
+  <view class="sos-btn" bindtap="goToEmergency">
+    <text class="sos-icon">🆘</text>
+    <text class="sos-text">SOS 紧急求助</text>
+  </view>
+
+  <!-- 保险服务入口 -->
+  <view class="section-card insurance-card" bindtap="goToInsurance">
+    <view class="insurance-card-inner">
+      <view class="insurance-card-left">
+        <view class="insurance-icon-wrap">
+          <text class="insurance-icon">🛡️</text>
+        </view>
+        <view class="insurance-text">
+          <text class="insurance-title">我的保障</text>
+          <text class="insurance-desc">意外险 · 设备险 · 全面保障</text>
+        </view>
+      </view>
+      <text class="insurance-arrow">></text>
+    </view>
+    <view class="insurance-tags">
+      <text class="insurance-tag">人身意外险</text>
+      <text class="insurance-tag">设备损坏险</text>
+      <text class="insurance-tag">劳务保障</text>
+    </view>
+  </view>
+
   <!-- 我要发布 -->
   <view class="section-card" wx:if="{{!elderMode}}">
     <view class="card-header">

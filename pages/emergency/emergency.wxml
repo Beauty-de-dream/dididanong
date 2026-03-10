@@ -1,0 +1,116 @@
+<!--pages/emergency/emergency.wxml - 紧急求助-->
+<view class="page-emergency">
+
+  <!-- 紧急求助头部 -->
+  <view class="emergency-hero">
+    <text class="hero-icon">🆘</text>
+    <text class="hero-title">紧急求助</text>
+    <text class="hero-desc">遇到紧急情况，请立即拨打以下电话</text>
+  </view>
+
+  <!-- 一键报警 -->
+  <view class="sos-section">
+    <view class="sos-call-btn" bindtap="callPolice">
+      <text class="sos-call-icon">🚨</text>
+      <view class="sos-call-info">
+        <text class="sos-call-title">报警电话</text>
+        <text class="sos-call-number">110</text>
+      </view>
+    </view>
+    <view class="sos-row">
+      <view class="sos-call-btn small" bindtap="callAmbulance">
+        <text class="sos-call-icon">🚑</text>
+        <view class="sos-call-info">
+          <text class="sos-call-title">急救电话</text>
+          <text class="sos-call-number">120</text>
+        </view>
+      </view>
+      <view class="sos-call-btn small" bindtap="callFire">
+        <text class="sos-call-icon">🚒</text>
+        <view class="sos-call-info">
+          <text class="sos-call-title">火警电话</text>
+          <text class="sos-call-number">119</text>
+        </view>
+      </view>
+    </view>
+    <view class="sos-call-btn platform" bindtap="callPlatform">
+      <text class="sos-call-icon">📞</text>
+      <view class="sos-call-info">
+        <text class="sos-call-title">平台紧急热线</text>
+        <text class="sos-call-number">0571-10000</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 紧急联系人 -->
+  <view class="section-card">
+    <view class="card-header">
+      <text class="card-title">👨‍👩‍👧‍👦 紧急联系人</text>
+      <text class="card-action" bindtap="addContact">+ 添加</text>
+    </view>
+    <view class="contact-list">
+      <view wx:if="{{contacts.length === 0}}" class="empty-contacts">
+        <text class="empty-text">请添加紧急联系人</text>
+        <text class="empty-tip">紧急情况下可一键通知联系人</text>
+      </view>
+      <view wx:for="{{contacts}}" wx:key="id" class="contact-item">
+        <view class="contact-info">
+          <text class="contact-name">{{item.name}}</text>
+          <text class="contact-relation">{{item.relation}}</text>
+          <text class="contact-phone">{{item.phone}}</text>
+        </view>
+        <view class="contact-actions">
+          <view class="contact-call-btn" bindtap="callContact" data-phone="{{item.phone}}">
+            <text>📞</text>
+          </view>
+          <view class="contact-del-btn" bindtap="deleteContact" data-id="{{item.id}}">
+            <text>✕</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加联系人弹窗 -->
+  <view class="modal-mask" wx:if="{{showAddModal}}" bindtap="closeModal">
+    <view class="modal-content" catchtap="">
+      <text class="modal-title">添加紧急联系人</text>
+      <view class="form-group">
+        <text class="form-label">姓名 *</text>
+        <input class="form-input" placeholder="请输入联系人姓名" bindinput="onContactInput" data-field="name"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">关系 *</text>
+        <picker mode="selector" range="{{relations}}" bindchange="onRelationChange">
+          <view class="form-picker">
+            <text class="{{contactForm.relation ? '' : 'placeholder'}}">{{contactForm.relation || '请选择关系'}}</text>
+            <text>▾</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-group">
+        <text class="form-label">电话 *</text>
+        <input class="form-input" type="number" placeholder="请输入联系电话" bindinput="onContactInput" data-field="phone"/>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn cancel" bindtap="closeModal">取消</view>
+        <view class="modal-btn confirm" bindtap="saveContact">保存</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 安全提示 -->
+  <view class="section-card">
+    <view class="card-header">
+      <text class="card-title">⚠️ 安全提示</text>
+    </view>
+    <view class="safety-tips">
+      <text class="safety-item">🔹 外出务工前，告知家人您的工作地点和联系人信息</text>
+      <text class="safety-item">🔹 工作中注意安全防护，遵守操作规范</text>
+      <text class="safety-item">🔹 如遇人身安全威胁，请立即拨打110报警</text>
+      <text class="safety-item">🔹 发生工伤，第一时间拨打120并保留现场证据</text>
+      <text class="safety-item">🔹 保持手机畅通，确保紧急情况下能及时联系</text>
+    </view>
+  </view>
+
+</view>

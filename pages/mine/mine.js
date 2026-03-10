@@ -114,6 +114,16 @@ Page({
     wx.navigateTo({ url: '/pages/partnership/partnership' })
   },
 
+  // 保险服务
+  goToInsurance() {
+    wx.navigateTo({ url: '/pages/insurance/insurance' })
+  },
+
+  // 紧急求助
+  goToEmergency() {
+    wx.navigateTo({ url: '/pages/emergency/emergency' })
+  },
+
   // 设置
   goToSettings() {
     wx.navigateTo({ url: '/pages/settings/settings' })

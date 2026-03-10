@@ -62,6 +62,18 @@
       <view class="btn btn-warning btn-lg" style="margin-top:30rpx;" bindtap="submitApply">提交申请</view>
     </view>
 
+    <!-- 纠纷调解入口 -->
+    <view class="dispute-banner" bindtap="goToDispute">
+      <view class="dispute-banner-left">
+        <text class="dispute-icon">⚖️</text>
+        <view class="dispute-text">
+          <text class="dispute-title">遇到纠纷？点击申请调解</text>
+          <text class="dispute-desc">平台提供免费劳务纠纷调解服务</text>
+        </view>
+      </view>
+      <text class="dispute-arrow">></text>
+    </view>
+
     <!-- 底部操作 -->
     <view class="bottom-bar">
       <view class="bottom-btn-left" bindtap="callContact">
